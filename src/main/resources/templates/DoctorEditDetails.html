@@ -35,7 +35,7 @@
 
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
     </head>
-    <body onload="specialityList()">
+    <body onload="specialityList(); showDetails()">
 
         <!-- Preloader -->
         <div class="loader">
@@ -255,7 +255,7 @@
                             </div>
                             <div class="signup-form">
                                 <form>
-                                    <div class="row justify-content-center">
+                                    <div class="row justify-content-center" id="showDetails">
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>Name</label>
@@ -277,11 +277,16 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>Speciality</label>
-                                                <select class="form-control" id="speciality">
+                                                
+                                                <div id="speciality" >
+                                                    <select class="form-control" >
                                                     <option>Choose Your Speciality</option>
                                                     <option>John Smith</option>
                                                     <option>Sarah Taylor</option>
                                                 </select>
+                                                </div>
+                                                
+                                                
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -332,7 +337,7 @@
                                                 <textarea id="experience" class="form-control" placeholder="Experience"></textarea>
                                             </div>
                                         </div>
-                                        <div class="">
+                                        <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label>Education</label>
                                                 <textarea id="education" class="form-control" placeholder="Education"></textarea>
@@ -510,26 +515,24 @@
 
                                         var mainobj = JSON.parse(ans);
                                         var arr = mainobj["ans"];
-                                        console.log(arr);
                                         var s = "";
-                                        s += `<option id="d1">Choose Your Speciality</option>`;
+                                        s += `<select class="form-control" ><option id="d1">Choose Your Speciality</option>`;
                                         for (var i = 0; i < arr.length; i++) {
                                             
                                             s += `<option value="${arr[i].sid}">`;
                                             s += arr[i].sname;
                                             s += `</option>`;
                                         }
+                                        
+                                        s = s + `</select>`;
+                                        
                                         document.getElementById("speciality").innerHTML = s;
-                                        console.log("Hello")
+                                        
                                     }
                                     
                                     function editDetails() {
                                                 var name = document.getElementById("name").value;
                                                 var contact = document.getElementById("phNum").value;
-                                                var email = document.getElementById("email").value;
-                                                var password = document.getElementById("password").value;
-                                                var password2 = document.getElementById("password2").value;
-                                                var speciality = document.getElementById("speciality").value;
                                                 var city = document.getElementById("city").value;
                                                 var longitude = document.getElementById("longitude").value;
                                                 var latitude = document.getElementById("latitude").value;
@@ -539,16 +542,13 @@
                                                 var desc = document.getElementById("desc").value;
                                                 var experience = document.getElementById("experience").value;
                                                 var education = document.getElementById("education").value;
-
-                                                    
+                                                
+                                                
                                                     
                                                     
                                                 var formData = new FormData();
                                                 formData.append("name", name);
                                                 formData.append("contact", contact);
-                                                formData.append("email", email);
-                                                formData.append("password", password);
-                                                formData.append("speciality", speciality);
                                                 formData.append("city", city);
                                                 formData.append("longitude", longitude);
                                                 formData.append("latitude", latitude);
@@ -558,25 +558,138 @@
                                                 formData.append("desc", desc);
                                                 formData.append("experience", experience);
                                                 formData.append("education", education);
-                                                formData.append("photo", photo);
                                                 
-                                                var url = "/addDoctor";
+                                                var url = "/editDetails";
 
                                                 fetch(url, {method: "POST", body: formData})
                                                         .then(response => response.text())
-                                                        .then(ans => renderDetails(ans));
+                                                        .then(ans => renderEditDetails(ans));
                                             
                                             }
 
-                                            function renderDetails(ans) {
+                                            function renderEditDetails(ans) {
                                                 if (ans === "success") {
-                                                    alert("Request Sent Successfully");
+                                                    alert("Updated Successfully");
                                                 } else if (ans === "failed") {
-                                                    alert("Request Already Exists");
+                                                    alert(ans);
                                                 } else {
                                                     alert(ans);
                                                 }
                                             }
+                                            
+                                            function showDetails() {
+                                                    var url = "/showDetails";
+
+                                                    fetch(url)
+                                                            .then(response => response.text())
+                                                            .then(ans => renderDetails(ans));
+                                                }
+                                                function renderDetails(ans) {
+
+                                                    var mainobj = JSON.parse(ans);
+                                                    var arr = mainobj["ans"];
+                                                        var s = "";
+                                                    
+                                                    s+=`<div class="col-lg-6">`;
+                                                    s+=`<div class="form-group">`;
+                                                    s+=`<label>Name</label>`;
+                                                    s+=`<input type="text" id="name" class="form-control" value="${arr[0].dname}" placeholder="Name">`;
+                                                    s+=`</div>`;
+                                                    s+=`</div>`;
+                                                    
+                                                    s+=`<div class="col-lg-6">`;
+                                                    s+=`<div class="form-group">`;
+                                                    s+=`<label>Phone Number</label>`;
+                                                    s+=`<input type="text" id="phNum" value="${arr[0].dcontact}" class="form-control" placeholder="Phone Number">`;
+                                                    s+=`</div>`;
+                                                    s+=`</div>`;
+                                                    
+                                                    s+=`<div class="col-lg-6">`;
+                                                    s+=`<div class="form-group">`;
+                                                    s+=`<label>Email</label>`;
+                                                    s+=`<input type="email" disabled id="email" value="${arr[0].demail}" class="form-control" placeholder="Your Email">`;
+                                                    s+=`</div>`;
+                                                    s+=`</div>`;
+                                                    
+                                                    s+=`<div class="col-lg-6">`;
+                                                    s+=`<div class="form-group">`;
+                                                    s+=`<label>Speciality</label>`;
+                                                    s+=`<input type="text" disabled id="speciality" value="${arr[0].dspecialityname}" class="form-control">`;
+                                                    s+=`</div>`;
+                                                    s+=`</div>`;
+                                                    
+                                                    s+=`<div class="col-lg-6">`;
+                                                    s+=`<div class="form-group">`;
+                                                    s+=`<label>City</label>`;
+                                                    s+=`<input type="text" value="${arr[0].dcity}" id="city" class="form-control" placeholder="city">`;
+                                                    s+=`</div>`;
+                                                    s+=`</div>`;
+                                                    
+                                                    s+=`<div class="col-lg-6">`;
+                                                    s+=`<div class="form-group">`;
+                                                    s+=`<label>Longitude</label>`;
+                                                    s+=`<input type="text" id="longitude" value="${arr[0].dlongitude}" class="form-control" placeholder="Longitude">`;
+                                                    s+=`</div>`;
+                                                    s+=`</div>`;
+                                                    
+                                                    s+=`<div class="col-lg-6">`;
+                                                    s+=`<div class="form-group">`;
+                                                    s+=`<label>Latitude</label>`;
+                                                    s+=`<input type="text" id="latitude" value="${arr[0].dlatitude}" class="form-control" placeholder="Latitude">`;
+                                                    s+=`</div>`;
+                                                    s+=`</div>`;
+                                                    
+                                                    s+=`<div class="col-lg-6">`;
+                                                    s+=`<div class="form-group">`;
+                                                    s+=`<label>Start Time</label>`;
+                                                    s+=`<input type="text" id="startTime" value="${arr[0].dstart_time}" class="form-control" placeholder="Start Time">`;
+                                                    s+=`</div>`;
+                                                    s+=`</div>`;
+                                                    
+                                                    s+=`<div class="col-lg-6">`;
+                                                    s+=`<div class="form-group">`;
+                                                    s+=`<label>End Time</label>`;
+                                                    s+=`<input type="text" id="endTime" value="${arr[0].dend_time}" class="form-control" placeholder="End Time">`;
+                                                    s+=`</div>`;
+                                                    s+=`</div>`;
+                                                    
+                                                    s+=`<div class="col-lg-6">`;
+                                                    s+=`<div class="form-group">`;
+                                                    s+=`<label>Slot Amount</label>`;
+                                                    s+=`<input type="text" id="slotAmount" class="form-control" value="${arr[0].dslot_amount}" placeholder="Slot Amount">`;
+                                                    s+=`</div>`;
+                                                    s+=`</div>`;
+                                                    
+                                                    s+=`<div class="col-lg-6">`;
+                                                    s+=`<div class="form-group">`;
+                                                    s+=`<label>Description</label>`;
+                                                    s+=`<textarea id="desc" class="form-control" placeholder="Description">${arr[0].ddesc}</textarea>`;
+                                                    s+=`</div>`;
+                                                    s+=`</div>`;
+                                                    
+                                                    s+=`<div class="col-lg-6">`;
+                                                    s+=`<div class="form-group">`;
+                                                    s+=`<label>Experience</label>`;
+                                                    s+=`<textarea id="experience" class="form-control" placeholder="Experience">${arr[0].dexperience}</textarea>`;
+                                                    s+=`</div>`;
+                                                    s+=`</div>`;
+                                                    
+                                                    s+=`<div class="col-lg-12">`;
+                                                    s+=`<div class="form-group">`;
+                                                    s+=`<label>Education</label>`;
+                                                    s+=`<textarea id="education" class="form-control" placeholder="Education">${arr[0].deducation}</textarea>`;
+                                                    s+=`</div>`;
+                                                    s+=`</div>`;
+
+                                                    s+=`<div class="col-lg-12">`;
+                                                    s+=`<div class="text-center">`;
+                                                    s+=`<button type="button" onclick="editDetails()" class="btn signup-btn">Confirm</button>`;
+                                                    s+=`</div>`;
+                                                    s+=`</div>`;
+    
+
+                                                    document.getElementById("showDetails").innerHTML = s;
+                                                }
         </script>
 
 
