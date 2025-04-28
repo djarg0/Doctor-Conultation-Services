@@ -17,8 +17,8 @@ public class UserController {
          return "UserLogin";
     }
     
-    @GetMapping("/UserHome")
-    public String userHome() {
-         return "UserHome";
+    @GetMapping("/")
+    public String index() {
+         return "index";
     }
 }
