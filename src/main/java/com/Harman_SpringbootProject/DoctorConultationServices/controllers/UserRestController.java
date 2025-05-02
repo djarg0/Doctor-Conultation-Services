@@ -1,6 +1,7 @@
 package com.Harman_SpringbootProject.DoctorConultationServices.controllers;
 
 import com.Harman_SpringbootProject.DoctorConultationServices.vmm.DBLoader;
+import com.Harman_SpringbootProject.DoctorConultationServices.vmm.RDBMS_TO_JSON;
 import jakarta.servlet.http.HttpSession;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
@@ -70,5 +71,12 @@ public class UserRestController {
         } catch (Exception ex) {
             return ex.toString();
         }
+    }
+    
+    
+    @PostMapping("getSpeciality")
+    public String getSpeciality(@RequestParam String city) {
+        String ans= new RDBMS_TO_JSON().generateJSON("SELECT DISTINCT * FROM specialities s JOIN doctor d ON s.sname = d.dspecialityname WHERE d.dcity ='"+city+"'");
+        return ans;
     }
 }

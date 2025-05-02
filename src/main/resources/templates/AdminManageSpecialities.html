@@ -271,8 +271,8 @@
                                 <img src="assets/img/appointment/3.png" alt="Shape">
                             </div>
                             <h2>Specialities Details</h2>
-                            <span>Add specialities to the list    </span>
-                            <div class="appointment-form">
+                            <span>Add specialities to the list</span>
+                            <div class="appointment-form" id="form1">
                                 <form>
                                     <div class="row justify-content-center">
                                         <div class="col-lg-6">
@@ -289,7 +289,7 @@
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
-                                                <label>City Description</label>
+                                                <label>Speciality Description</label>
                                                 <textarea class="form-control" id="sDesc" placeholder="Enter Speciality Description"></textarea>
                                             </div>
                                         </div>
@@ -473,9 +473,6 @@
         <script src="assets/js/custom.js"></script>
 
         <script>
-                    document.getElementById('anchor').onclick = function() {
-                        this.classList.add('pointer-cursor');
-                    };
                                             function addSpeciality() {
                                                 var sName = document.getElementById("sName").value;
                                                 var sDesc = document.getElementById("sDesc").value;
@@ -486,6 +483,7 @@
                                                 formData.append("sDesc", sDesc);
                                                 formData.append("sPhoto", sPhoto);
 
+                                                
                                                 var url = "/addSpeciality";
 
                                                 fetch(url, {method: "POST", body: formData})

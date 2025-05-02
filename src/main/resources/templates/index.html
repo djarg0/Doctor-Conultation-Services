@@ -1240,25 +1240,25 @@
                                                 var s = "";
                                                 for(var i = 0;i<arr.length;i++)
                                                 {
-                                                    
+                                                    var city= arr[i].cityname;
                                                     var orgName= arr[i].cityphoto;
                                                     var filePath= "myUploads/" + orgName;
                                                     s+=`<div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".3s">
                                                     <div class="blog-item">
                                                     <div class="blog-top">
-                                                    <a href="blog-details.html">
+                                                    <a href="/UserShowSpeciality?city=${city}">
                                                     <img src=${filePath}>
                                                     </a>
                                                     </div>
                                                     <div class="blog-bottom">
                                                     <h3>
-                                                    <a href="blog-details.html">${arr[i].cityname}</a>
+                                                    <a href="/UserShowSpeciality?city=${city}">${arr[i].cityname}</a>
                                                     </h3>
                                                     <p>${arr[i].citydesc}</p>
                                                     <ul>
                                                     <li>
-                                                    <a href="blog-details.html">
-                                                    See Doctors
+                                                    <a href="/UserShowSpeciality?city=${city}">
+                                                    See Specialities
                                                     <i class="icofont-long-arrow-right"></i>
                                                     </a>
                                                     </li>
@@ -1269,7 +1269,7 @@
                                                     </ul>
                                                     </div>
                                                     </div>
-                                                    </div>`
+                                                    </div>`;
                                                     
                                                 }
                                                     //alert(arr);
