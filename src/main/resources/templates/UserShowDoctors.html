@@ -35,7 +35,7 @@
 
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
     </head>
-    <body>
+    <body onload="getDoctors()">
 
         <!-- Preloader -->
         <div class="loader">
@@ -238,55 +238,100 @@
         </div>
         <!-- End Navbar Area -->
 
-        <section class="expertise-area pt-100 pb-70">
+        <!-- Page Title -->
+        <div class="page-title-area page-title-one">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="page-title-item">
+                        <h2>Meet Our Qualified Doctors</h2>
+                        <ul>
+                            <li>
+                                <a href="index.html">Home</a>
+                            </li>
+                            <li>
+                                <i class="icofont-simple-right"></i>
+                            </li>
+                            <li>Doctors</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Title -->
+
+
+        <!-- Doctors -->
+        <section class="doctors-area doctors-area-two pt-100">
+            <div class="doctor-shape">
+                <img src="assets/img/doctor/2.png" alt="Shape">
+            </div>
             <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-lg-6 expertise-item">
-                        <div class="row justify-content-center">
-                            <div class="col-sm-6 col-lg-6 wow fadeInUp" data-wow-delay=".3s">
-                                <a href="/DoctorManagePhotos">
-                                    <div class="expertise-inner">
-                                        <i class="icofont-picture"></i>
-                                        <h3>Manage Photos</h3>
-                                    </div>
-                                </a>
+                <div class="row justify-content-center" id="showDoctor">
+                    <div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".3s">
+                        <div class="doctor-item">
+                            <div class="doctor-top">
+                                <img src="assets/img/home-one/doctor/1.jpg" alt="Doctor">
+                                <a href="appointment.html">Get Appointment</a>
                             </div>
-                            <div class="col-sm-6 col-lg-6 wow fadeInUp" data-wow-delay=".5s">
-                                <a href="/DoctorEditDetails">
-                                    <div class="expertise-inner">
-                                        <i class="icofont-edit"></i>
-                                        <h3>Edit Details</h3>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-sm-6 col-lg-6 wow fadeInUp" data-wow-delay=".3s">
-                                <a href="blog-details.html">
-                                    <div class="expertise-inner">
-                                        <i class="icofont-network"></i>
-                                        <h3>Teachnology</h3>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-sm-6 col-lg-6 wow fadeInUp" data-wow-delay=".5s">
-                                <a href="blog-details.html">
-                                    <div class="expertise-inner">
-                                        <i class="icofont-ambulance-cross"></i>
-                                        <h3>Ambulance</h3>
-                                    </div>
-                                </a>
+                            <div class="doctor-bottom">
+                                <h3>
+                                    <a href="doctor-details.html">Dr. Babatunde</a>
+                                </h3>
+                                <span>Neurosurgeon</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 expertise-item">
-                        <div class="expertise-right">
-                            <img src="assets/img/home-one/6.jpg" alt="Expertise">
+                    
+                </div>
+            </div>
+        </section>
+        <!-- End Doctors -->
+        
+        
+<!--         Login 
+        <div class="signup-area">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 pl-0">
+                        <div class="login-left">
+                            <img src="assets/img/login-bg.jpg" alt="Login">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 ptb-100">
+                        <div class="signup-item">
+                            <div class="signup-head">
+                                <h2>Admin Login</h2>
+                            </div>
+                            <div class="signup-form">
+                                <form>
+                                    <div class="row justify-content-center">
+                                        
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="email" class="form-control"id="email" placeholder="Your Email">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" id="password" placeholder="Password">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-lg-12">
+                                            <div class="text-center">
+                                                <input type="button" class="btn signup-btn" onclick="login()" value="Login">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>  
-        
-        
+        </div>
+         End Login -->
 
         <!-- Footer -->
         <footer class="footer-two pb-70">
@@ -432,7 +477,54 @@
         <script src="assets/js/custom.js"></script>
         
         <script>
-            
+            const params = new URLSearchParams(window.location.search);
+            const city = params.get('city');
+            const sid= params.get('sid');
+                                            
+                                            function getDoctors() {
+                                                var url="/getDoctors";
+                                                var formData= new FormData();
+                                                formData.append("city", city);
+                                                formData.append("sid", sid);
+                                                fetch(url, {method: "POST", body: formData})
+                                                        .then(response => response.text())
+                                                        .then(ans2 => renderHTMLforDoctors(ans2));
+                                            }
+                                            function renderHTMLforDoctors(ans2) {
+                                                
+                                                var mainobj= JSON.parse(ans2);
+                                                var arr= mainobj["ans"];
+                                                
+                                                console.log(arr);
+                                                var s="";
+                                                for(var i=0; i<arr.length; i++) {
+                                                    if(arr[i].dstatus==="accepted") {
+                                                        var orgName= arr[i].dphoto;
+                                                        var filePath= "myUploads/"+ orgName;
+                                                        s+=`
+                                                        <div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".3s">
+                                                            <div class="doctor-item">
+                                                                <div class="doctor-top">
+                                                                    <img src="${filePath}" alt="Doctor">
+                                                                    <a href="">Get Appointment</a>
+                                                                </div>
+                                                                <div class="doctor-bottom">
+                                                                    <h3>
+                                                                        <a href="">${arr[i].dname}</a>
+                                                                    </h3>
+                                                                    <span>${arr[i].dspecialityname}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        `;                                                    }
+                                                }
+                                                document.getElementById("showDoctor").innerHTML= s;
+                                            }
+                                            
+                                            
+                                            
+                                            
+                                            
         </script>
     </body>
 

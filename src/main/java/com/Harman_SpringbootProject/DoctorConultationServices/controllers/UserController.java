@@ -26,4 +26,9 @@ public class UserController {
     public String userShowSpeciality() {
         return "UserShowSpeciality";
     }
+    
+    @GetMapping("/UserShowDoctors")
+    public String userShowDoctors() {
+        return "UserShowDoctors";
+    }
 }
