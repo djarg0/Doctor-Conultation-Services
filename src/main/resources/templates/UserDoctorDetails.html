@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
     
-<!-- Mirrored from templates.hibootstrap.com/medsev/default/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:21 GMT -->
+<!-- Mirrored from templates.hibootstrap.com/medsev/default/doctor-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:28 GMT -->
 <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,8 +35,8 @@
 
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
     </head>
-    <body onload="getDoctors()">
-
+    <body onload="doctorDetails()">
+        
         <!-- Preloader -->
         <div class="loader">
             <div class="d-table">
@@ -49,7 +49,7 @@
             </div>
         </div>
         <!-- End Preloader -->
-        
+
         <!-- Header Top -->
         <div class="header-top">
             <div class="container">
@@ -65,9 +65,9 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#543c3138383b143931302731227a373b39">
+                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#79111c15151639141c1d0a1c0f571a1614">
                                             <i class="icofont-ui-message"></i>
-                                            <span class="__cf_email__" data-cfemail="3e565b5252517e535b5a4d5b48105d5153">[email&#160;protected]</span>
+                                            <span class="__cf_email__" data-cfemail="9af2fff6f6f5daf7fffee9ffecb4f9f5f7">[email&#160;protected]</span>
                                         </a>
                                     </li>
                                     <li>
@@ -148,7 +148,7 @@
                                     <a href="about.html" class="nav-link">About</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link dropdown-toggle active">Pages</a>
+                                    <a href="#" class="nav-link dropdown-toggle">Pages</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
                                             <a href="appointment.html" class="nav-link">Appointment</a>
@@ -163,7 +163,7 @@
                                             <a href="sign-up.html" class="nav-link">Sign Up</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#" class="nav-link active">Login</a>
+                                            <a href="login.html" class="nav-link">Login</a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
@@ -194,13 +194,13 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link dropdown-toggle">Doctor</a>
+                                    <a href="#" class="nav-link dropdown-toggle active">Doctor</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
                                             <a href="doctor.html" class="nav-link">Doctor</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="doctor-details.html" class="nav-link">Doctor Details</a>
+                                            <a href="#" class="nav-link active">Doctor Details</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -239,102 +239,219 @@
         <!-- End Navbar Area -->
 
         <!-- Page Title -->
-        <div class="page-title-area page-title-one">
+        <div id="showDetails">
+        <div class="page-title-area page-title-three">
             <div class="d-table">
                 <div class="d-table-cell">
-                    <div class="page-title-item">
-                        <h2>Meet Our Qualified Doctors</h2>
-                        <ul>
-                            <li>
-                                <a href="index.html">Home</a>
-                            </li>
-                            <li>
-                                <i class="icofont-simple-right"></i>
-                            </li>
-                            <li>Doctors</li>
-                        </ul>
+                    <div class="page-title-item-two">
+                        <h2>Dr. Sarah Taylor</h2>
+                        <h3>Neurosurgeon.</h3>
+                        <p>MBBS in Neurology, PHD in Neurosurgeon.</p>
                     </div>
                 </div>
             </div>
         </div>
         <!-- End Page Title -->
 
-
-        <!-- Doctors -->
-        <section class="doctors-area doctors-area-two pt-100">
-            <div class="doctor-shape">
-                <img src="assets/img/doctor/2.png" alt="Shape">
-            </div>
+        <!-- Doctor Details -->
+        <div class="doctor-details-area pb-70">
             <div class="container">
-                <div class="row justify-content-center" id="showDoctor">
-                    <div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".3s">
-                        <div class="doctor-item">
-                            <div class="doctor-top">
-                                <img src="assets/img/home-one/doctor/1.jpg" alt="Doctor">
-                                <a href="appointment.html">Get Appointment</a>
-                            </div>
-                            <div class="doctor-bottom">
-                                <h3>
-                                    <a href="doctor-details.html">Dr. Babatunde</a>
-                                </h3>
-                                <span>Neurosurgeon</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
-        <!-- End Doctors -->
-        
-        
-<!--         Login 
-        <div class="signup-area">
-            <div class="container-fluid">
                 <div class="row justify-content-center">
-                    <div class="col-lg-6 pl-0">
-                        <div class="login-left">
-                            <img src="assets/img/login-bg.jpg" alt="Login">
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 ptb-100">
-                        <div class="signup-item">
-                            <div class="signup-head">
-                                <h2>Admin Login</h2>
+                    <div class="col-lg-5">
+                        <div class="doctor-details-item doctor-details-left">
+                            <img src="assets/img/doctor/3.jpg" alt="Doctor">
+                            <div class="doctor-details-contact">
+                                <h3>Contact info</h3>
+                                <ul>
+                                    <li>
+                                        <i class="icofont-ui-call"></i>
+                                        Call : <a href="tel:+07554332322">+07 554 332 322</a>
+                                    </li>
+                                    <li>
+                                        <i class="icofont-ui-message"></i>
+                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#ed8588818182ad8088899e889bc38e8280"><span class="__cf_email__" data-cfemail="5e363b3232311e333b3a2d3b28703d3133">[email&#160;protected]</span></a>
+                                    </li>
+                                    <li>
+                                        <i class="icofont-location-pin"></i>
+                                        4th Floor, 408 No Chamber
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="signup-form">
-                                <form>
-                                    <div class="row justify-content-center">
-                                        
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <input type="email" class="form-control"id="email" placeholder="Your Email">
-                                            </div>
+                            <div class="doctor-details-work">
+                                <h3>Working hours</h3>
+                                <div class="appointment-item-two-right">
+                                    <div class="appointment-item-content">
+                                        <div class="content-one">
+                                            <ul>
+                                                <li>Monday</li>
+                                                <li>Tuesday</li>
+                                                <li>Wednesday</li>
+                                                <li>Sunday</li>
+                                            </ul>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <input type="password" class="form-control" id="password" placeholder="Password">
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-lg-12">
-                                            <div class="text-center">
-                                                <input type="button" class="btn signup-btn" onclick="login()" value="Login">
-                                            </div>
+                                        <div class="content-two">
+                                            <ul>
+                                                <li>9:00 am - 8:00 pm</li>
+                                                <li>9:00 am - 8:00 pm</li>
+                                                <li>9:00 am - 8:00 pm</li>
+                                                <li>9:00 am - 8:00 pm</li>
+                                            </ul>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="doctor-details-item">
+                            <div class="doctor-details-right">
+                                <div class="doctor-details-biography">
+                                    <h3>Biography</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p><br>
+                                    <p>Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                                </div>
+                                <div class="doctor-details-biography">
+                                    <h3>Education</h3>
+                                    <ul>
+                                        <li>PHD degree in Neorology at University of Mediserv (2006)</li>
+                                        <li>Master of Neoro Surgery  at University of Mediserv (2002)</li>
+                                        <li>MBBS degree in Neurosciences at University of Mediserv (2002)</li>
+                                        <li>Higher Secondary Certificate at Mediserv collage  (1991)</li>
+                                    </ul>
+                                </div>
+                                <div class="doctor-details-biography">
+                                    <h3>Biography</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-         End Login -->
+        </div>
+        <!-- End Doctor Details -->
+
+        <!-- Appointment -->
+        <div class="appointment-area-three">
+            <div class="container-fluid p-0">
+                <div class="row m-0">
+                    <div class="col-lg-7">
+                        <div class="appointment-item appointment-item-two">
+                            <div class="appointment-shape">
+                                <img src="assets/img/appointment/3.png" alt="Shape">
+                            </div>
+                            <h2>Book your appointment</h2>
+                            <span>We will confirm your  appointment within 2 hours</span>
+                            <div class="appointment-form">
+                                <form>
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <i class="icofont-business-man-alt-1"></i>
+                                                <label>Name</label>
+                                                <input type="text" class="form-control" placeholder="Enter Your Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <i class="icofont-ui-message"></i>
+                                                <label>Email</label>
+                                                <input type="email" class="form-control" placeholder="Enter Your Email">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <i class="icofont-ui-call"></i>
+                                                <label>Phone</label>
+                                                <input type="text" class="form-control" placeholder="Enter Your Number">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <i class="icofont-hospital"></i>
+                                                <label>Services</label>
+                                                <select class="form-control" id="exampleFormControlSelect1">
+                                                    <option>Dental Care</option>
+                                                    <option>Pathology</option>
+                                                    <option>Diagnosis</option>
+                                                    <option>Neurology</option>
+                                                    <option>Cardiology</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <i class="icofont-doctor"></i>
+                                                <label>Doctor</label>
+                                                <input type="text" class="form-control" placeholder="Choose Your Doctor">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <i class="icofont-business-man"></i>
+                                                <label>Age</label>
+                                                <input type="text" class="form-control" placeholder="Your Age">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn appointment-btn">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 pr-0">
+                        <div class="speciality-item speciality-right speciality-right-two speciality-right-three">
+                            <img src="assets/img/doctor/4.jpg" alt="Doctor">
+                            <div class="speciality-emergency">
+                                <div class="speciality-icon">
+                                    <i class="icofont-ui-call"></i>
+                                </div>
+                                <h3>Emergency Call</h3>
+                                <a href="tel:+07554332322">+07 554 332 322</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Appointment -->
 
         <!-- Footer -->
-        <footer class="footer-two pb-70">
+        <footer class="pb-70">
+
+            <!-- Newsletter -->
+            <div class="newsletter-area">
+                <div class="container">
+                    <div class="row newsletter-wrap align-items-center">
+                        <div class="col-lg-7">
+                            <div class="newsletter-item">
+                                <h2>Join Our Newsletter</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="newsletter-item">
+                                <div class="newsletter-form">
+                                    <form class="newsletter-form" data-toggle="validator">
+                                        <input type="email" class="form-control" placeholder="Enter Your Email" name="EMAIL" required autocomplete="off">
+        
+                                        <button class="btn newsletter-btn" type="submit">
+                                            Subscribe
+                                        </button>
+        
+                                        <div id="validator-newsletter" class="form-result"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Newsletter -->
+
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-sm-6 col-lg-4">
@@ -344,8 +461,8 @@
                                 <ul>
                                     <li>
                                         <i class="icofont-ui-message"></i>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#d9b0b7bfb699b4bcbdb0aabcaff7bab6b4"><span class="__cf_email__" data-cfemail="b4dddad2dbf4d9d1d0ddc7d1c29ad7dbd9">[email&#160;protected]</span></a>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#d3bbb6bfbfbc93beb6b7baa0b6a5fdb0bcbe"><span class="__cf_email__" data-cfemail="39515c55555679545c5d504a5c4f175a5654">[email&#160;protected]</span></a>
+                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#86efe8e0e9c6ebe3e2eff5e3f0a8e5e9eb"><span class="__cf_email__" data-cfemail="d3babdb5bc93beb6b7baa0b6a5fdb0bcbe">[email&#160;protected]</span></a>
+                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#bdd5d8d1d1d2fdd0d8d9d4ced8cb93ded2d0"><span class="__cf_email__" data-cfemail="452d2029292a052820212c3620336b262a28">[email&#160;protected]</span></a>
                                     </li>
                                     <li>
                                         <i class="icofont-stock-mobile"></i>
@@ -444,7 +561,7 @@
         <div class="copyright-area">
             <div class="container">
                 <div class="copyright-item">
-                    <p>© <span>Medsev</span> is Proudly Owned by <a href="https://hibootstrap.com/" target="_blank">HiBoostrap</a></p>
+                   <p>© <span>Medsev</span> is Proudly Owned by <a href="https://hibootstrap.com/" target="_blank">HiBoostrap</a></p>
                 </div>
             </div>
         </div>
@@ -475,17 +592,14 @@
         <script src="assets/js/jquery.appear.min.js"></script>
         <!-- Custom JS -->
         <script src="assets/js/custom.js"></script>
-        
         <script>
             const params = new URLSearchParams(window.location.search);
-            const city = params.get('city');
-            const sid= params.get('sid');
+            const did= params.get('did');
                                             
-                                            function getDoctors() {
-                                                var url="/getDoctors";
+                                            function doctorDetails() {
+                                                var url="/doctorDetails";
                                                 var formData= new FormData();
-                                                formData.append("city", city);
-                                                formData.append("sid", sid);
+                                                formData.append("did", did);
                                                 fetch(url, {method: "POST", body: formData})
                                                         .then(response => response.text())
                                                         .then(ans2 => renderHTMLforDoctors(ans2));
@@ -494,50 +608,113 @@
                                                 
                                                 var mainobj= JSON.parse(ans2);
                                                 var arr= mainobj["ans"];
-                                                
                                                 console.log(arr);
+                                                
+                                                var orgName= arr[0].dphoto;
+                                                var filePath= "myUploads/"+ orgName;
                                                 var s="";
-                                                for(var i=0; i<arr.length; i++) {
-                                                    if(arr[i].dstatus==="accepted") {
-                                                        var orgName= arr[i].dphoto;
-                                                        var filePath= "myUploads/"+ orgName;
-                                                        s+=`
-                                                        <div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".3s">
-                                                            <div class="doctor-item">
-                                                                <div class="doctor-top">
+                                                s+=`
+                                                <div class="page-title-area page-title-three">
+                                                    <div class="d-table">
+                                                        <div class="d-table-cell">
+                                                            <div class="page-title-item-two">
+                                                                <h2>${arr[0].dname}</h2>
+                                                                <h3>${arr[0].dspecialityname}.</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="doctor-details-area pb-70">
+                                                    <div class="container">
+                                                        <div class="row justify-content-center">
+                                                            <div class="col-lg-5">
+                                                                <div class="doctor-details-item doctor-details-left">
                                                                     <img src="${filePath}" alt="Doctor">
-                                                                    <a href="">Get Appointment</a>
+                                                                    <div class="doctor-details-contact">
+                                                                        <h3>Contact info</h3>
+                                                                        <ul>
+                                                                            <li>
+                                                                                <i class="icofont-ui-call"></i>
+                                                                                Call : ${arr[0].dcontact}
+                                                                            </li>
+                                                                            <li>
+                                                                                <i class="icofont-ui-message"></i>
+                                                                                <span class="__cf_email__" data-cfemail="5e363b3232311e333b3a2d3b28703d3133">${arr[0].demail}</span>
+                                                                            </li>
+                                                                            <li>
+                                                                                <i class="icofont-location-pin"></i>
+                                                                                ${arr[0].daddress}
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="doctor-details-work">
+                                                                        <h3>Working hours</h3>
+                                                                        <div class="appointment-item-two-right">
+                                                                            <div class="appointment-item-content">
+                                                                                <div class="content-one">
+                                                                                    <ul>
+                                                                                        <li>Monday</li>
+                                                                                        <li>Tuesday</li>
+                                                                                        <li>Wednesday</li>
+                                                                                        <li>Sunday</li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                                <div class="content-two">
+                                                                                    <ul>
+                                                                                        <li>9:00 am - 8:00 pm</li>
+                                                                                        <li>9:00 am - 8:00 pm</li>
+                                                                                        <li>9:00 am - 8:00 pm</li>
+                                                                                        <li>9:00 am - 8:00 pm</li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="doctor-bottom">
-                                                                    <h3>
-                                                                        <a href="/UserDoctorDetails?did=${arr[i].did}">${arr[i].dname}</a>
-                                                                    </h3>
-                                                                    <div class="row">
-                                                                    <div class="col-lg-6 text-start">
-                                                                    <h5>
-                                                                        ${arr[i].dspecialityname}
-                                                                    </h5>
-                                                                    </div>
-                                                                    <div class="col-lg-6 text-end">
-                                                                    <h5>Fee: 
-                                                                        ${arr[i].dslot_amount}  
-                                                                    </h5>
-                                                                    </div>
+                                                            </div>
+                                                            <div class="col-lg-7">
+                                                                <div class="doctor-details-item">
+                                                                    <div class="doctor-details-right">
+                                                                        <div class="doctor-details-biography">
+                                                                            <h3>Biography</h3>
+                                                                            <p>${arr[0].ddesc}</p><br>
+                                                                        </div>
+                                                                        <div class="doctor-details-biography">
+                                                                            <h3>Education</h3>
+                                                                            <ul>
+                                                                    `;
+                                                                            var educ= arr[0].deducation
+                                                                            var x= educ.split(",");
+                                                                                for(var i=0; i<x.length; i++) {
+                                                                                    s+=`<li>${x[i]}</li>`;
+                                                                                }
+                                                                            s+=`</ul>
+                                                                        </div>
+                                                                        <div class="doctor-details-biography">
+                                                                            <h3>Experience</h3>
+                                                                            <p>${arr[0].dexperience}</p>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        `;                                                    }
-                                                }
-                                                document.getElementById("showDoctor").innerHTML= s;
+                                                    </div>
+                                                </div>
+                                                `;
+                                                
+                                                document.getElementById("showDetails").innerHTML= s;
                                             }
+                                            
+                                                
                                             
                                             
                                             
                                             
                                             
         </script>
+        
     </body>
 
-<!-- Mirrored from templates.hibootstrap.com/medsev/default/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:21 GMT -->
-</html>
+<!-- Mirrored from templates.hibootstrap.com/medsev/default/doctor-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:28 GMT -->
+</html> 

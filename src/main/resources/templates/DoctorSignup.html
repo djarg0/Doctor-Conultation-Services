@@ -331,6 +331,12 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
+                                                <label>Address</label>
+                                                <textarea id="address" class="form-control" placeholder="Address"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
                                                 <label>Start Time</label>
                                                 <input type="text" id="startTime" class="form-control" placeholder="Start Time">
                                             </div>
@@ -359,7 +365,7 @@
                                                 <textarea id="experience" class="form-control" placeholder="Experience"></textarea>
                                             </div>
                                         </div>
-                                        <div>
+                                        <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>Education</label>
                                                 <textarea id="education" class="form-control" placeholder="Education"></textarea>
@@ -578,6 +584,7 @@
                                                 var desc = document.getElementById("desc").value;
                                                 var experience = document.getElementById("experience").value;
                                                 var education = document.getElementById("education").value;
+                                                var address = document.getElementById("address").value;
                                                 var photo = document.getElementById("photo").files[0];
 
                                                 if(password===password2) {
@@ -599,6 +606,7 @@
                                                 formData.append("desc", desc);
                                                 formData.append("experience", experience);
                                                 formData.append("education", education);
+                                                formData.append("address", address);
                                                 formData.append("photo", photo);
                                                 
                                                 var url = "/addDoctor";

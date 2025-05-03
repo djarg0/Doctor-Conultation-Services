@@ -273,6 +273,7 @@
                                             <th scope="col" class="col-lg-3">Profile Picture</th>
                                             <th scope="col">Speciality</th>
                                             <th scope="col">Slot Amount</th>
+                                            <th scope="col">Education</th>
                                             <th scope="col">Biography</th>
                                             <th scope="col">City</th>
                                             <th scope="col">Experience</th>
@@ -470,7 +471,7 @@
                                                         s+=`<td>`;
                                                         s+=arr[i].dname+`</td>`;
                                                         s+=`<td>`;
-                                                        s+=`<div class="w-50 p-3">`;
+                                                        s+=`<div class="w-100 p-2">`;
                                                         s+=`<img src="`;
                                                         s+=filePath+`" class="img-fluid">`;
                                                         s+=`</div>`;
@@ -480,8 +481,9 @@
                                                         s+=arr[i].dspecialityname+`</td>`;
                                                         s+=`<td>`;
                                                         s+=arr[i].dslot_amount+`</td>`;
-                                                        s+=`<td>Education: `;
-                                                        s+=arr[i].deducation+`<br>About Me: `;
+                                                        s+=`<td>`;
+                                                        s+=arr[i].deducation+`</td>`;
+                                                        s+=`<td>`;
                                                         s+=arr[i].ddesc+`</td>`;
                                                         s+=`<td>`;
                                                         s+=arr[i].dcity+`</td>`;

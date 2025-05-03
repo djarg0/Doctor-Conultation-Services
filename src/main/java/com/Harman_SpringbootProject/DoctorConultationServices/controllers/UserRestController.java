@@ -76,13 +76,20 @@ public class UserRestController {
     
     @PostMapping("getSpeciality")
     public String getSpeciality(@RequestParam String city) {
-        String ans= new RDBMS_TO_JSON().generateJSON("SELECT DISTINCT * FROM specialities s JOIN doctor d ON s.sname = d.dspecialityname WHERE d.dcity ='"+city+"'");
+        String ans= new RDBMS_TO_JSON().generateJSON("SELECT DISTINCT s.*, d.dcity, d.dstatus FROM specialities s JOIN doctor d ON s.sname = d.dspecialityname WHERE d.dcity ='"+city+"'");
         return ans;
     }
     
     @PostMapping("getDoctors")
     public String getDoctors(@RequestParam String city, @RequestParam int sid) {
-        String ans= new RDBMS_TO_JSON().generateJSON("SELECT DISTINCT * FROM specialities s JOIN doctor d ON s.sname = d.dspecialityname WHERE d.dcity ='"+city+"' AND s.sid = '"+sid+"'");
+        String ans= new RDBMS_TO_JSON().generateJSON("SELECT DISTINCT s.*, d.did, d.dstatus, d.dslot_amount, d.dphoto, d.dname, d.dspecialityname FROM specialities s JOIN doctor d ON s.sname = d.dspecialityname WHERE d.dcity ='"+city+"' AND s.sid = '"+sid+"'");
         return ans;
     }
+    
+    @PostMapping("doctorDetails")
+    public String doctorDetails(@RequestParam String did) {
+        String ans= new RDBMS_TO_JSON().generateJSON("select * from doctor where did= '"+did+"'");
+        return ans;
+    }
+    
 }

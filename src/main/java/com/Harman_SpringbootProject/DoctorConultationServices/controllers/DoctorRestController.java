@@ -22,7 +22,7 @@ public class DoctorRestController {
     }
 
     @PostMapping("/addDoctor")
-    public String addDoctor(@RequestParam String name, @RequestParam String contact, @RequestParam String email, @RequestParam String password, @RequestParam String speciality, @RequestParam String city, @RequestParam String longitude, @RequestParam String latitude, @RequestParam String startTime, @RequestParam String endTime, @RequestParam int slotAmount, @RequestParam String desc, @RequestParam String experience, @RequestParam String education, @RequestParam MultipartFile photo) {
+    public String addDoctor(@RequestParam String name, @RequestParam String contact, @RequestParam String address, @RequestParam String email, @RequestParam String password, @RequestParam String speciality, @RequestParam String city, @RequestParam String longitude, @RequestParam String latitude, @RequestParam String startTime, @RequestParam String endTime, @RequestParam int slotAmount, @RequestParam String desc, @RequestParam String experience, @RequestParam String education, @RequestParam MultipartFile photo) {
 
         String projectPath = System.getProperty("user.dir");
         String internalPath = "/src/main/resources/static";
@@ -65,6 +65,7 @@ public class DoctorRestController {
                     rs.updateString("ddesc", desc);
                     rs.updateString("dexperience", experience);
                     rs.updateString("deducation", education);
+                    rs.updateString("daddress", address);
                     rs.updateString("dspecialityname", sname);
                     rs.insertRow();
                     return "success";
