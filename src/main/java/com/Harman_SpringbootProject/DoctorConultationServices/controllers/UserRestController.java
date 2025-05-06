@@ -5,6 +5,9 @@ import com.Harman_SpringbootProject.DoctorConultationServices.vmm.RDBMS_TO_JSON;
 import jakarta.servlet.http.HttpSession;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -90,6 +93,64 @@ public class UserRestController {
     public String doctorDetails(@RequestParam String did) {
         String ans= new RDBMS_TO_JSON().generateJSON("select * from doctor where did= '"+did+"'");
         return ans;
+    }
+    
+    @PostMapping("showPhotos")
+    public String showPhotos(@RequestParam String did) {
+        String ans= new RDBMS_TO_JSON().generateJSON("select * from photos where did= '"+did+"'");
+        return ans;
+    }
+    
+    @GetMapping("/view_slots")
+    String view_slots(@RequestParam String did, @RequestParam String date) {
+
+        System.out.println(date);
+        System.out.println(did);
+        try {
+            ResultSet rs = DBLoader.executeQuery("select * from doctor where did='" + did + "'");
+
+            String start;
+            String end;
+            String slot;
+            if (rs.next()) {
+                start = rs.getString("dstart_time");
+                end = rs.getString("dend_time");
+                slot = rs.getString("dslot_amount");
+
+            } else {
+                String err = "failed";
+                return err;
+            }
+            int Start = Integer.parseInt(start);
+            int End = Integer.parseInt(end);
+            int Slot = Integer.parseInt(slot);
+            JSONObject ans = new JSONObject();
+
+            //Define JSONArray
+            JSONArray arr = new JSONArray();
+            for (int i = Start; i <= End; i++) {
+                JSONObject row = new JSONObject();
+                row.put("start_slot", Start);
+                row.put("end_slot", ++Start);
+                row.put("slot_amount", slot);
+
+                ResultSet rs2 = DBLoader.executeQuery("select * from booking_details where start_slot ='" + i + "' and booking_id in (select booking_id from booking where date=\'" + date + "\' and did =\'" + did + "\' ) ");
+                if (rs2.next()) {
+                    row.put("status", "Booked");
+                } else {
+                    row.put("status", "Available");
+                }
+
+                arr.add(row);
+            }
+            ans.put("ans", arr);
+            System.out.println(ans.toString());
+            return (ans.toJSONString());
+
+        } catch (Exception e) {
+            return e.toString();
+        }
+
     }
     
 }

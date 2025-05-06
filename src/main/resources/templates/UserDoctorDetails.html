@@ -35,7 +35,7 @@
 
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
     </head>
-    <body onload="doctorDetails()">
+    <body onload="doctorDetails(), showPhotos()">
         
         <!-- Preloader -->
         <div class="loader">
@@ -243,52 +243,44 @@
         
         </div>
         <!-- End Doctor Details -->
+    
         
-        <div class="container">
-    <div id="imageSlider" class="carousel slide" data-bs-ride="carousel">
-        <!-- Indicators -->
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="1"></button>
-            <button type="button" data-bs-target="#imageSlider" data-bs-slide-to="2"></button>
-        </div>
-
-        <!-- Slides -->
-        <div class="carousel-inner rounded">
-            <div class="carousel-item active">
-                <img src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw4fHxtb3VudGFpbnxlbnwwfDB8fHwxNzI0OTI2Mjg5fDA&ixlib=rb-4.0.3&q=80&w=1080" class="d-block w-100" alt="Beautiful Mountain">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Beautiful Mountain</h5>
-                    <p>A stunning view of a snow-capped mountain during sunset.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="https://images.unsplash.com/photo-1432889490240-84df33d47091?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxiZWFjaHxlbnwwfDB8fHwxNzI0OTI2MzI1fDA&ixlib=rb-4.0.3&q=80&w=1080" class="d-block w-100" alt="Serene Beach">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Serene Beach</h5>
-                    <p>A peaceful beach with golden sands and crystal-clear water.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="MyUploads/1.jpg" class="d-block w-100" alt="Lush Forest">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Lush Forest</h5>
-                    <p>A dense forest with towering trees and vibrant green foliage.</p>
+    <div class="home-slider owl-theme owl-carousel"  id="card">
+        <div class="slider-item-img slider-item-img-three">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="container">
+                        <div class="slider-shape">
+                            <div class="slider-shape-two">
+                                <div class="row">
+                                    <div class="col-lg-2"></div>
+                                    <img src="myuploads/photo1.webp" class="w-100 p-3" alt="Shape">
+                                    <div class="col-lg-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Controls -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#imageSlider" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#imageSlider" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        <div class="slider-item-img slider-item-img-three">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="container">
+                        <div class="slider-shape">
+                            <div class="slider-shape-two">
+                                <div class="row">
+                                    <div class="col-lg-2"></div>
+                                    <img src="myuploads/photo1.webp" class="w-100 p-3" alt="Shape">
+                                    <div class="col-lg-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
         <br>
         <!-- Appointment -->
         <div class="appointment-area-three">
@@ -376,7 +368,6 @@
             </div>
         </div>
         <!-- End Appointment -->
-
         <!-- Footer -->
         <footer class="pb-70">
 
@@ -606,27 +597,10 @@
                                                                             </li>
                                                                         </ul>
                                                                     </div>
+        
                                                                     <div class="doctor-details-work">
-                                                                        <h3>Working hours</h3>
-                                                                        <div class="appointment-item-two-right">
-                                                                            <div class="appointment-item-content">
-                                                                                <div class="content-one">
-                                                                                    <ul>
-                                                                                        <li>Monday</li>
-                                                                                        <li>Tuesday</li>
-                                                                                        <li>Wednesday</li>
-                                                                                        <li>Sunday</li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                                <div class="content-two">
-                                                                                    <ul>
-                                                                                        <li>9:00 am - 8:00 pm</li>
-                                                                                        <li>9:00 am - 8:00 pm</li>
-                                                                                        <li>9:00 am - 8:00 pm</li>
-                                                                                        <li>9:00 am - 8:00 pm</li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div>
+                                                                        <div class="d-grid gap-2 col-lg-10">
+                                                                            <button onclick="book()" class="btn btn-primary btn-lg" type="button">Book Appointment</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -664,9 +638,71 @@
                                                 document.getElementById("showDetails").innerHTML= s;
                                             }
                                             
-                                                
+                                             function showPhotos() {
+                                                var url="/showPhotos";
+                                                var formData= new FormData();
+                                                formData.append("did", did);
+                                                fetch(url, {method: "POST", body: formData})
+                                                        .then(response => response.text())
+                                                        .then(ans2 => renderPhotos(ans2));
+                                            }
                                             
                                             
+                                            function renderPhotos(ans) {
+                                            var mainobj = JSON.parse(ans);
+                                            var arr = mainobj["ans"];
+                                            console.log(arr);
+
+                                            // Get the slider container
+                                            var container = document.querySelector(".home-slider");
+
+                                            // Clear previous slides
+                                            container.innerHTML = "";
+
+                                            // Add new slides
+                                            for (var i = 0; i < arr.length; i++) {
+                                                var orgName = arr[i].photo;
+                                                var filePath = "myUploads/" + orgName;
+                                                container.innerHTML += `
+                                                    <div class="slider-item-img slider-item-img-three">
+                                                        <div class="d-table">
+                                                            <div class="d-table-cell">
+                                                                <div class="container">
+                                                                    <div class="slider-shape">
+                                                                        <div class="slider-shape-two">
+                                                                            <div class="row">
+                                                                                <div class="col-lg-2"></div>
+                                                                                <img src="${filePath}" class="w-100 p-3" alt="Photo">
+                                                                                <div class="col-lg-2"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                `;
+                                                }
+
+                                                // Destroy existing owl if already initialized
+                                                $('.home-slider').trigger('destroy.owl.carousel');
+
+                                                // Reinitialize after slight delay to ensure DOM is updated
+                                                setTimeout(() => {
+                                                    $(".home-slider").owlCarousel({
+                                                        items: 1,
+                                                        loop: true,
+                                                        nav: true,
+                                                        dots: true,
+                                                        autoplay: true
+                                                    });
+                                                }, 100); // 100ms delay ensures proper DOM setup
+                                            }
+                                            
+                                            function book() {
+                                                window.location.href="/UserBookAppointment?did="+did;
+                                            }
+
                                             
                                             
                                             

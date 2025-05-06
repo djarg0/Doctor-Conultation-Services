@@ -36,4 +36,9 @@ public class UserController {
     public String userDoctorDetails() {
         return "UserDoctorDetails";
     }
+    
+    @GetMapping("UserBookAppointment")
+    public String userBookAppointment() {
+        return "UserBookAppointment";
+    }
 }
