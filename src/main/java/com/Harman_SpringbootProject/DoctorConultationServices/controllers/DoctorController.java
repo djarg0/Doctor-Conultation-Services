@@ -9,30 +9,26 @@ public class DoctorController {
     
     @GetMapping("/DoctorSignup")
     public String doctorSignup() {
-        
         return "DoctorSignup";
     }
     
     @GetMapping("/DoctorLogin")
-    public String doctorLogin() {
-        
+    public String doctorLogin() {        
         return "DoctorLogin";
     }
+    
     @GetMapping("/DoctorHome")
-    public String doctorHome() {
-        
+    public String doctorHome() {        
         return "DoctorHome";
     }
     
     @GetMapping("/DoctorManagePhotos")
     public String doctorManagePhotos() {
-        
-        return "DoctorManagePhotos";
+                return "DoctorManagePhotos";
     }
     
     @GetMapping("/DoctorEditDetails")
     public String doctorEditDetails() {
-        
-        return "DoctorEditDetails";
+                return "DoctorEditDetails";
     }
 }

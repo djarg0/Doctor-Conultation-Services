@@ -5,6 +5,7 @@ import com.Harman_SpringbootProject.DoctorConultationServices.vmm.RDBMS_TO_JSON;
 import jakarta.servlet.http.HttpSession;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
+import java.util.StringTokenizer;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -152,5 +153,59 @@ public class UserRestController {
         }
 
     }
+    
+    
+    
+    @GetMapping("/pay")
+    public String payment(@RequestParam String date,
+            @RequestParam String did,
+            @RequestParam String amount,
+            @RequestParam String slots,
+            HttpSession session,
+            @RequestParam String type,
+            @RequestParam String status) {
+        String ans = "";
+        Integer uid = (Integer) session.getAttribute("uid");
+
+        try {
+            // 1. Insert into booking table
+            ResultSet rs = DBLoader.executeQuery("SELECT * FROM booking");
+            rs.moveToInsertRow();
+            rs.updateString("date", date);
+            rs.updateInt("did", Integer.parseInt(did));
+            rs.updateInt("uid", uid);
+            rs.updateString("total_price", amount);
+            rs.updateString("payment_type", type);
+            rs.updateString("status", status);
+            rs.insertRow();
+
+            // 2. Get inserted booking_id
+            int booking_id = 0;
+            ResultSet rs2 = DBLoader.executeQuery("SELECT MAX(booking_id) AS maxid FROM booking");
+            if (rs2.next()) {
+                booking_id = rs2.getInt("maxid");
+            }
+
+            // 3. Insert slots into booking_detail table
+            StringTokenizer st = new StringTokenizer(slots, ",");
+            while (st.hasMoreTokens()) {
+                int start_slot = Integer.parseInt(st.nextToken());
+                int end_slot = start_slot + 1;
+
+                ResultSet rs3 = DBLoader.executeQuery("SELECT * FROM booking_details");
+                rs3.moveToInsertRow();
+                rs3.updateInt("booking_id", booking_id); // fk to booking_id
+                rs3.updateString("start_slot", String.valueOf(start_slot));
+                rs3.updateString("end_slot", String.valueOf(end_slot));
+                rs3.insertRow();
+            }
+
+            ans = "success";
+            return ans;
+        } catch (Exception ex) {
+            return ex.toString();
+    }
+}
+
     
 }

@@ -8,8 +8,7 @@ public class UserController {
     
     @GetMapping("/UserSignup")
     public String userSignup() {
-        
-        return "UserSignup";
+                return "UserSignup";
     }
     
     @GetMapping("/UserLogin")
@@ -37,8 +36,13 @@ public class UserController {
         return "UserDoctorDetails";
     }
     
-    @GetMapping("UserBookAppointment")
+    @GetMapping("/UserBookAppointment")
     public String userBookAppointment() {
         return "UserBookAppointment";
+    }
+    
+    @GetMapping("/payment")
+    public String payment() {
+        return "payment";
     }
 }

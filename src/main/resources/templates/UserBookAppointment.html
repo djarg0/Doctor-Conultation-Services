@@ -36,11 +36,12 @@
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
         
        <script>
+           const params = new URLSearchParams(window.location.search);
+            const did= params.get('did');
 
             function go() {
                 
-                 const params = new URLSearchParams(window.location.search);
-            const did= params.get('did');
+                 
                 
                 
 
@@ -129,7 +130,6 @@
 
                 var c = document.getElementsByName("c1");
                 var date = document.getElementById("datepicker").value;
-                var email = document.getElementById("display").innerText;
                 console.log(c);
                 for (var i = 0; i < c.length; i++) {
 
@@ -137,7 +137,7 @@
                         allslots += c[i].value + ",";
                     }
                 }
-                window.location.href = "payment?date=" + date + "&email=" + email + "&total=" + total + "&slots=" + allslots + " ";
+                window.location.href = "/payment?date=" + date + "&did=" + did + "&total=" + total + "&slots=" + allslots + " ";
             }
 
         </script>
