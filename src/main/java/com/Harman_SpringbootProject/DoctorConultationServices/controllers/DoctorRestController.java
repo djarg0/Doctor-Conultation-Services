@@ -188,4 +188,120 @@ public class DoctorRestController {
         }
 
     }
+    
+    
+    @PostMapping("/showBookings")
+    public String showBookings2(HttpSession session) {
+        
+        Integer id = (Integer) session.getAttribute("did");
+        try {
+            ResultSet rs= DBLoader.executeQuery("SELECT  * FROM booking JOIN booking_details ON booking.booking_id = booking_details.booking_id JOIN user ON booking.uid = user.uid where booking.did="+id+";");
+
+            String ans = "";
+
+            StringBuilder json = new StringBuilder();
+            json.append("[");
+
+            int bid=-1;
+            boolean first= true;
+            boolean last=false;
+            while (rs.next()) {
+                if (!first || last) {
+                    json.append(",");
+                } else {
+                    first = false;
+                }
+                int booking_id= rs.getInt("booking_id");
+                String uname = rs.getString("uname");
+                String ucontact= rs.getString("ucontact");
+                String date = rs.getString("date");
+                String total_price = rs.getString("total_price");
+                String ugender = rs.getString("ugender");
+                String status = rs.getString("status");
+                String payment_type = rs.getString("payment_type");
+
+                if(bid!=booking_id) {
+                    
+                    bid=booking_id;
+
+                    json.append("{");
+                    json.append("\"uname\":\"").append(uname).append("\",");
+                    json.append("\"ucontact\":\"").append(ucontact).append("\",");
+                    json.append("\"date\":\"").append(date).append("\",");
+                    json.append("\"total_price\":\"").append(total_price).append("\",");
+                    json.append("\"ugender\":\"").append(ugender).append("\",");
+                    json.append("\"status\":\"").append(status).append("\",");
+                    json.append("\"booking_id\":").append(booking_id).append(",");
+                    StringBuilder json2 = new StringBuilder();
+                    try{
+                        
+                        json2.append("[");
+                        ResultSet rs2= DBLoader.executeQuery("select * from booking_details where booking_id="+booking_id);
+                        boolean first1= true;
+                        while(rs2.next()) {
+                            
+                            if (!first1) {
+                                json2.append(",");
+                            } else {
+                                first1 = false;
+                            }
+                            String slot= rs2.getString("start_slot")+"-"+rs2.getString("end_slot");
+                            
+                            json2.append("{");
+                            json2.append("\"slot\":\"").append(slot);
+                            json2.append("\"}");
+                    
+                            //if(rs2.next()) json2.append(", ");
+                        }
+                        json2.append("]");
+                    }
+                    
+                    catch(Exception ex) {
+                        return ex.toString();
+                    }
+                    String slots= json2.toString();
+                    
+                    json.append("\"slots\":").append(slots).append(",");
+                    json.append("\"payment_type\":\"").append(payment_type);
+                    json.append("\"}");
+                    
+                    //if(rs.next()) json.append(", ");
+                }
+                if(!rs.next()) last=true;
+            }
+
+            json.append("]");
+
+            System.out.println(json.toString());
+            ans= json.toString();
+            return ans;
+        }
+        catch(Exception ex) {
+            return ex.toString();
+        }
+    }
+    
+    @GetMapping("/showSlots")
+    public String showSlots(@RequestParam int bid) {
+        String ans= new RDBMS_TO_JSON().generateJSON("select * from booking_details where booking_id="+bid);
+        return ans;
+    }
+    
+    @PostMapping("/acceptBooking")
+    public String accept(@RequestParam int id) {
+        try {
+            ResultSet rs= DBLoader.executeQuery("select * from booking where booking_id= '"+ id +"'");
+            if(rs.next()) {
+                rs.updateString("status", "approved");
+                rs.updateRow();
+                return "success";
+            }
+            else {
+                return "failed";
+            }
+        }
+        catch(Exception ex) {
+            return ex.toString();
+        }
+    }
 }

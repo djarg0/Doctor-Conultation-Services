@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zxx">
-    
-<!-- Mirrored from templates.hibootstrap.com/medsev/default/service.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:21 GMT -->
-<head>
+
+    <!-- Mirrored from templates.hibootstrap.com/medsev/default/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:21 GMT -->
+    <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-       <!-- Bootstrap CSS -->
+        <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <!-- Owl Carousel CSS -->
         <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -34,8 +34,18 @@
         <title>Medsev - Healthcare Clinic & Doctor HTML Template</title>
 
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!-- Bootstrap JS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
     </head>
-    <body onload="showDoctor()">
+    <body onload="showBookings()">
 
         <!-- Preloader -->
         <div class="loader">
@@ -49,7 +59,7 @@
             </div>
         </div>
         <!-- End Preloader -->
-        
+
         <!-- Header Top -->
         <div class="header-top">
             <div class="container">
@@ -65,9 +75,9 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#e9818c858586a9848c8d9a8c9fc78a8684">
+                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#543c3138383b143931302731227a373b39">
                                             <i class="icofont-ui-message"></i>
-                                            <span class="__cf_email__" data-cfemail="c8a0ada4a4a788a5adacbbadbee6aba7a5">[email&#160;protected]</span>
+                                            <span class="__cf_email__" data-cfemail="3e565b5252517e535b5a4d5b48105d5153">[email&#160;protected]</span>
                                         </a>
                                     </li>
                                     <li>
@@ -93,7 +103,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                       <a href="https://www.pinterest.com/" target="_blank">
+                                        <a href="https://www.pinterest.com/" target="_blank">
                                             <i class="icofont-pinterest"></i>
                                         </a>
                                     </li>
@@ -105,7 +115,7 @@
             </div>
         </div>
         <!-- End Header Top -->
-        
+
         <!-- Start Navbar Area -->
         <div class="navbar-area sticky-top">
             <!-- Menu For Mobile Device -->
@@ -148,7 +158,7 @@
                                     <a href="about.html" class="nav-link">About</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link dropdown-toggle">Pages</a>
+                                    <a href="#" class="nav-link dropdown-toggle active">Pages</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
                                             <a href="appointment.html" class="nav-link">Appointment</a>
@@ -163,7 +173,7 @@
                                             <a href="sign-up.html" class="nav-link">Sign Up</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="login.html" class="nav-link">Login</a>
+                                            <a href="#" class="nav-link active">Login</a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
@@ -183,10 +193,10 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link dropdown-toggle active">Services</a>
+                                    <a href="#" class="nav-link dropdown-toggle">Services</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
-                                            <a href="#" class="nav-link active">Service</a>
+                                            <a href="service.html" class="nav-link">Service</a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="service-details.html" class="nav-link">Service Details</a>
@@ -236,28 +246,11 @@
                 </div>
             </div>
         </div>
+
+
+
         <!-- End Navbar Area -->
 
-        <!-- Page Title -->
-        <div class="page-title-area page-title-four">
-            <div class="d-table">
-                <div class="d-table-cell">
-                    <div class="page-title-item">
-                        <h2>Manage Doctors</h2>
-                        <ul>
-                            <li>
-                                <a href="index.html">Home</a>
-                            </li>
-                            <li>
-                                <i class="icofont-simple-right"></i>
-                            </li>
-                            <li>Manage Doctors</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Page Title -->
 
         <div class="container">
             <div class="row justify-content-center">
@@ -268,44 +261,54 @@
                                 <table class="table table-hover table-striped table-bordered custom_table">
                                     <thead class="table-primary">
                                         <tr>
-                                            
-                                            <th scope="col">Name</th>
-                                            <th scope="col" class="col-lg-3">Profile Picture</th>
-                                            <th scope="col">Speciality</th>
-                                            <th scope="col">Slot Amount</th>
-                                            <th scope="col">Education</th>
-                                            <th scope="col">Biography</th>
-                                            <th scope="col">City</th>
-                                            <th scope="col">Experience</th>
+
+                                            <th scope="col">Patient Name</th>
+                                            <th scope="col">Doctor Name</th>
+                                            <th scope="col">Doctor Speciality</th>
                                             <th scope="col">Contact</th>
-                                            <th scope="col">Accept</th>
-                                            <th scope="col">Reject</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Total Payment</th>
+                                            <th scope="col">Slots</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Payment Mode</th>
                                         </tr>
                                     </thead>
                                     <tbody id="showRequest" class="align-top">
-                                        
+
                                     </tbody>
                                 </table>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        
-        
-        
-        
-        
+
+
+        <!--        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
+
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content text-black" id="slotdiv">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Booked Slots</h4>
+                    </div>
+                    <div class="modal-body" >
+                        <p style="color:black">Some text in the modal.</p>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
 
         <!-- Footer -->
-        <footer class="pb-70">
-
-            
-
-            <div class="container" onload="getSpeciality()">
+        <footer class="footer-two pb-70">
+            <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-sm-6 col-lg-4">
                         <div class="footer-item">
@@ -314,8 +317,8 @@
                                 <ul>
                                     <li>
                                         <i class="icofont-ui-message"></i>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#b2dbdcd4ddf2dfd7d6dbc1d7c49cd1dddf"><span class="__cf_email__" data-cfemail="6b02050d042b060e0f02180e1d45080406">[email&#160;protected]</span></a>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#5038353c3c3f103d3534392335267e333f3d"><span class="__cf_email__" data-cfemail="e78f828b8b88a78a82838e948291c984888a">[email&#160;protected]</span></a>
+                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#d9b0b7bfb699b4bcbdb0aabcaff7bab6b4"><span class="__cf_email__" data-cfemail="b4dddad2dbf4d9d1d0ddc7d1c29ad7dbd9">[email&#160;protected]</span></a>
+                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#d3bbb6bfbfbc93beb6b7baa0b6a5fdb0bcbe"><span class="__cf_email__" data-cfemail="39515c55555679545c5d504a5c4f175a5654">[email&#160;protected]</span></a>
                                     </li>
                                     <li>
                                         <i class="icofont-stock-mobile"></i>
@@ -372,7 +375,7 @@
                                         <a href="service-details.html">Hijama Therapy</a>
                                     </li>
                                     <li>
-                                       <a href="service-details.html">Massage Therapy</a>
+                                        <a href="service-details.html">Massage Therapy</a>
                                     </li>
                                     <li>
                                         <a href="service-details.html">Ambluance Sevices</a>
@@ -435,113 +438,92 @@
         <!-- Wow JS -->
         <script src="assets/js/wow.min.js"></script>
         <!-- Form Ajaxchimp JS -->
-		<script src="assets/js/jquery.ajaxchimp.min.js"></script>
-		<!-- Form Validator JS -->
-		<script src="assets/js/form-validator.min.js"></script>
-		<!-- Contact JS -->
-		<script src="assets/js/contact-form-script.js"></script>
+        <script src="assets/js/jquery.ajaxchimp.min.js"></script>
+        <!-- Form Validator JS -->
+        <script src="assets/js/form-validator.min.js"></script>
+        <!-- Contact JS -->
+        <script src="assets/js/contact-form-script.js"></script>
         <!-- Odometer JS -->
         <script src="assets/js/odometer.min.js"></script>
         <script src="assets/js/jquery.appear.min.js"></script>
         <!-- Custom JS -->
         <script src="assets/js/custom.js"></script>
-        
-        
+
         <script>
-                                            function showDoctor() {
-                                                var url="/showDoctor";
-                                                
-                                                fetch(url, {method: "POST"})
+        function showBookings() {
+
+            var url = "/showUserBookings   ";
+
+            fetch(url, {method: "GET"})
+                    .then(response => response.text())
+                    .then(ans => renderHTML(ans));
+        }
+
+        function renderHTML(ans) {
+            console.log(ans);
+            var mainobj = JSON.parse(ans);
+            var arr= mainobj["ans"];
+            var s = "";
+            for (var i = 0; i < arr.length; i++)
+            {
+                s += `<tr>`;
+                s += `<td>`;
+                s += arr[i].uname + `</td>`;
+                
+                s += `<td>`;
+                s += arr[i].dname + `</td>`;
+                s += `<td>`;
+                s += arr[i].dspecialityname + `</td>`;
+                s += `<td>`;
+                s += arr[i].dcontact + `</td>`;
+                s+=`<td>${arr[i].date}</td>`;
+                s+=`<td>${arr[i].total_price}</td>`;
+                s += `<td>`;
+                s += `<button type="button" onclick="slots(${arr[i].booking_id})" class="btn btn-info" data-toggle="modal" data-target="#myModal">Slots</button></td>`;
+                s += `</td><td>`+arr[i].status + `</td>`;
+                s += `<td>`;
+                s += arr[i].payment_type + `</td>`;
+
+                s += `</tr>`;
+            }
+            document.getElementById("showRequest").innerHTML = s;
+        }
+
+                                                function slots(bid) { 
+                                                        
+                                                var url = "/showSlots?bid="+bid;
+
+                                                fetch(url, {method: "GET"})
                                                         .then(response => response.text())
-                                                        .then(ans => renderHTML(ans));
-                                            }
-                                            function renderHTML(ans) {
+                                                        .then(ans => renderSlots(ans));        
+                                                }
                                                 
+                                                function renderSlots(ans) {
+
                                                 var mainobj= JSON.parse(ans);
                                                 var arr= mainobj["ans"];
-                                                console.log(arr);
-                                                var s = "";
-                                                for(var i = 0;i<arr.length;i++)
-                                                {
-                                                        var orgName= arr[i].dphoto;
-                                                        var filePath= "myUploads/" + orgName;
-
-
-                                                        s+=`<tr>`;
-                                                        s+=`<td>`;
-                                                        s+=arr[i].dname+`</td>`;
-                                                        s+=`<td>`;
-                                                        s+=`<div class="w-100 ">`;
-                                                        s+=`<img src="`;
-                                                        s+=filePath+`" class="img-fluid">`;
-                                                        s+=`</div>`;
-                                                        s+=`</td>`;
-
-                                                        s+=`<td>`;
-                                                        s+=arr[i].dspecialityname+`</td>`;
-                                                        s+=`<td>`;
-                                                        s+=arr[i].dslot_amount+`</td>`;
-                                                        s+=`<td>`;
-                                                        s+=arr[i].deducation+`</td>`;
-                                                        s+=`<td>`;
-                                                        s+=arr[i].ddesc+`</td>`;
-                                                        s+=`<td>`;
-                                                        s+=arr[i].dcity+`</td>`;
-                                                        s+=`<td>`;
-                                                        s+=arr[i].dexperience+`</td>`;
-                                                        s+=`<td>`;
-                                                        s+=arr[i].dcontact+`<br>`;
-                                                        s+=arr[i].demail+`</td>`;
-                                                        s+=`<td>`;
-                                                        if(arr[i].dstatus==='accepted') {
-                                                            s+=`<button type="button" disabled onclick="accept(${arr[i].did})" class="btn btn-success">Accept</button>`;
-                                                        }
-                                                        else {
-                                                            s+=`<button type="button" onclick="accept(${arr[i].did})" class="btn btn-success">Accept</button>`;
-                                                        }
-                                                        s+=`</td>`;
-                                                        s+=`<td>`;
-                                                        if(arr[i].dstatus==='rejected') {
-                                                            s+=`<button type="button" disabled onclick="remove(${arr[i].did})" class="btn btn-danger">Reject</button>`;
-                                                        }
-                                                        else {
-                                                            s+=`<button type="button" onclick="remove(${arr[i].did})" class="btn btn-danger">Reject</button>`;
-                                                        }
-                                                        s+=`</td>`;
-                                                        s+=`</tr>`;
+                                                var s="";
+                                                s+=`<div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h2 class="modal-title" style="color : black">Booked Slots</h2>
+                                                        </div>
+                                                        <div class="modal-body" >`;
+                                                for(var i=0; i<arr.length; i++) {
+                                                    s+=`<h4 style="color : black">Start Time: 
+                                                                ${arr[i].start_slot}<br>
+                                                                End Time: ${arr[i].end_slot}<br>
+                                                                <br>
+                                                            </h4>`;
                                                 }
-
-                                              document.getElementById("showRequest").innerHTML= s;
-                                            }          
-                                            
-                                            function accept(id) {
-                                                var url="/accept";
-                                                var formData= new FormData();
-                                                formData.append("id", id);
-                                                fetch(url, {method: "POST", body: formData})
-                                                        .then(response => response.text())
-                                                        .then(ans => renderAccept(ans));
-                                            }
-                                            function renderAccept(ans) {
-                                                showDoctor();
-                                                alert(ans);
-                                            }
-                                            
-                                            function remove(id) {
-                                                var url="/remove";
-                                                var formData= new FormData();
-                                                formData.append("id", id);
-                                                fetch(url, {method: "POST", body: formData})
-                                                        .then(response => response.text())
-                                                        .then(ans => renderRemove(ans));
-                                            }
-                                            function renderRemove(ans) {
-                                                showDoctor();
-                                                alert(ans);
-                                            }
+                                                s+=`</div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </div>`;
+                                                    document.getElementById("slotdiv").innerHTML = s;
+                                                }
+                                                
+                                                
         </script>
-
     </body>
 
-<!-- Mirrored from templates.hibootstrap.com/medsev/default/service.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:21 GMT -->
 </html>

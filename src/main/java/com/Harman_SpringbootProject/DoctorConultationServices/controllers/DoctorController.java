@@ -31,4 +31,9 @@ public class DoctorController {
     public String doctorEditDetails() {
                 return "DoctorEditDetails";
     }
+    
+    @GetMapping("/DoctorManageAppointments")
+    public String doctorManageAppointments() {
+        return "DoctorManageAppointments";
+    }
 }

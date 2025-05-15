@@ -204,8 +204,13 @@ public class UserRestController {
             return ans;
         } catch (Exception ex) {
             return ex.toString();
+        }
     }
-}
-
     
+    @GetMapping("/showUserBookings")
+    public String showUserBookings(HttpSession session) {
+        Integer id = (Integer) session.getAttribute("uid");
+        String ans= new RDBMS_TO_JSON().generateJSON("SELECT  booking.*, doctor.dname, doctor.dspecialityname, doctor.dcontact,user.uid, user.uname FROM booking JOIN booking_details ON booking.booking_id = booking_details.booking_id JOIN doctor ON booking.did = doctor.did JOIN user ON booking.uid = user.uid where booking.uid="+id+";");
+       return ans;
+    }
 }

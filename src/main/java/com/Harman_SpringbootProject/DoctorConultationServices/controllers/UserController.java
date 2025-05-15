@@ -45,4 +45,9 @@ public class UserController {
     public String payment() {
         return "payment";
     }
+    
+    @GetMapping("/UserManageAppointments")
+    public String userManageAppointments() {
+        return "UserManageAppointments";
+    }
 }
