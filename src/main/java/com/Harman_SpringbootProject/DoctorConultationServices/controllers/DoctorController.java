@@ -1,5 +1,6 @@
 package com.Harman_SpringbootProject.DoctorConultationServices.controllers;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -18,22 +19,30 @@ public class DoctorController {
     }
     
     @GetMapping("/DoctorHome")
-    public String doctorHome() {        
-        return "DoctorHome";
+    public String doctorHome(HttpSession session) {        
+        Integer did= (Integer) session.getAttribute("did");
+        if(did==null)       return "redirect:/DoctorLogin";
+        else                return "DoctorHome";
     }
     
     @GetMapping("/DoctorManagePhotos")
-    public String doctorManagePhotos() {
-                return "DoctorManagePhotos";
+    public String doctorManagePhotos(HttpSession session) {        
+        Integer did= (Integer) session.getAttribute("did");
+        if(did==null)       return "redirect:/DoctorLogin";
+        else                return "DoctorManagePhotos";
     }
     
     @GetMapping("/DoctorEditDetails")
-    public String doctorEditDetails() {
-                return "DoctorEditDetails";
+    public String doctorEditDetails(HttpSession session) {        
+        Integer did= (Integer) session.getAttribute("did");
+        if(did==null)       return "redirect:/DoctorLogin";
+        else                return "DoctorEditDetails";
     }
     
     @GetMapping("/DoctorManageAppointments")
-    public String doctorManageAppointments() {
-        return "DoctorManageAppointments";
+    public String doctorManageAppointments(HttpSession session) {        
+        Integer did= (Integer) session.getAttribute("did");
+        if(did==null)       return "redirect:/DoctorLogin";
+        else                return "DoctorManageAppointments";
     }
 }

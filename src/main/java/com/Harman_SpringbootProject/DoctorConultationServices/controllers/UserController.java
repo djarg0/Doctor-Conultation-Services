@@ -1,5 +1,6 @@
 package com.Harman_SpringbootProject.DoctorConultationServices.controllers;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -22,32 +23,82 @@ public class UserController {
     }
     
     @GetMapping("/UserShowSpeciality")
-    public String userShowSpeciality() {
-        return "UserShowSpeciality";
+    public String userShowSpeciality(HttpSession session) {
+        Integer uid=(Integer) session.getAttribute("uid");
+        if(uid == null)
+        {
+            return "redirect:/UserLogin";
+        }
+        else{
+            return "UserShowSpeciality";
+        }
+        
     }
     
     @GetMapping("/UserShowDoctors")
-    public String userShowDoctors() {
-        return "UserShowDoctors";
+    public String userShowDoctors(HttpSession session) {
+        Integer uid=(Integer) session.getAttribute("uid");
+        if(uid == null)
+        {
+            return "redirect:/UserLogin";
+        }
+        else{
+            return "UserShowDoctors";
+        }
     }
     
     @GetMapping("/UserDoctorDetails")
-    public String userDoctorDetails() {
-        return "UserDoctorDetails";
+    public String userDoctorDetails(HttpSession session) {
+        Integer uid=(Integer) session.getAttribute("uid");
+        if(uid == null)
+        {
+            return "redirect:/UserLogin";
+        }
+        else{
+            return "UserDoctorDetails";
+        }
     }
     
     @GetMapping("/UserBookAppointment")
-    public String userBookAppointment() {
-        return "UserBookAppointment";
+    public String userBookAppointment(HttpSession session) {
+        Integer uid=(Integer) session.getAttribute("uid");
+        if(uid == null)
+        {
+            return "redirect:/UserLogin";
+        }
+        else{
+            return "UserBookAppointment";
+        }
     }
     
     @GetMapping("/payment")
-    public String payment() {
-        return "payment";
+    public String payment(HttpSession session) {
+        Integer uid=(Integer) session.getAttribute("uid");
+        if(uid == null)
+        {
+            return "redirect:/UserLogin";
+        }
+        else{
+            return "payment";
+        }
     }
     
     @GetMapping("/UserManageAppointments")
-    public String userManageAppointments() {
-        return "UserManageAppointments";
+    public String userManageAppointments(HttpSession session) {
+        Integer uid=(Integer) session.getAttribute("uid");
+        if(uid == null)
+        {
+            return "redirect:/UserLogin";
+        }
+        else{
+            return "UserManageAppointments";
+        }
+    }
+    
+    @GetMapping("/logout")
+    public String logout(HttpSession session)
+    {
+        session.invalidate();
+        return "redirect:/";
     }
 }

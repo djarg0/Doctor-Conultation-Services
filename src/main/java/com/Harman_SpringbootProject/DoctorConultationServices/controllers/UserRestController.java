@@ -105,8 +105,7 @@ public class UserRestController {
     @GetMapping("/view_slots")
     String view_slots(@RequestParam String did, @RequestParam String date) {
 
-        System.out.println(date);
-        System.out.println(did);
+        
         try {
             ResultSet rs = DBLoader.executeQuery("select * from doctor where did='" + did + "'");
 
@@ -145,7 +144,6 @@ public class UserRestController {
                 arr.add(row);
             }
             ans.put("ans", arr);
-            System.out.println(ans.toString());
             return (ans.toJSONString());
 
         } catch (Exception e) {

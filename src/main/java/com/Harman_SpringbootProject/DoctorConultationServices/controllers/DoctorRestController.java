@@ -272,7 +272,6 @@ public class DoctorRestController {
 
             json.append("]");
 
-            System.out.println(json.toString());
             ans= json.toString();
             return ans;
         }

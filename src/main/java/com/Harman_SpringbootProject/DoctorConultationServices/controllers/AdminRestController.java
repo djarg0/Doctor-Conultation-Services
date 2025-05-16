@@ -2,6 +2,7 @@ package com.Harman_SpringbootProject.DoctorConultationServices.controllers;
 
 import com.Harman_SpringbootProject.DoctorConultationServices.vmm.DBLoader;
 import com.Harman_SpringbootProject.DoctorConultationServices.vmm.RDBMS_TO_JSON;
+import jakarta.servlet.http.HttpSession;
 import java.io.FileOutputStream;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,10 +15,11 @@ import org.springframework.web.multipart.MultipartFile;
 public class AdminRestController {
     
     @PostMapping("/alogin")
-    public String alogin(@RequestParam String email, @RequestParam String password) {
+    public String alogin(@RequestParam String email, @RequestParam String password, HttpSession session) {
         try {
             ResultSet rs= DBLoader.executeQuery("select * from admin where email='"+ email +"' and password='"+ password +"'");
             if(rs.next()) {
+                session.setAttribute("email", email);
                 return "success";
             }
             else {

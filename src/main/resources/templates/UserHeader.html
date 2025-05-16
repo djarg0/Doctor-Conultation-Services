@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div th:fragment="header">  
+
+            <div th:if="${session.uid}">
+                <div class="navbar-area sticky-top">
+                    <!-- Menu For Mobile Device -->
+                    <div class="mobile-nav">
+                        <a href="/" class="logo">
+                            <img src="assets/img/logo-two.png" alt="Logo">
+                        </a>
+                    </div>
+
+                    <!-- Menu For Desktop Device -->
+                    <div class="main-nav">
+                        <div class="container">
+                            <nav class="navbar navbar-expand-md navbar-light">
+                                <a class="navbar-brand" href="/">
+                                    <img src="assets/img/logo.png" alt="Logo">
+                                </a>
+                                <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item">
+                                            <a href="/" class="nav-link">Home</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/UserManageAppointments" class="nav-link">Manage Appointments</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/logout" class="nav-link">Logout</a>
+                                        </li>
+                                    </ul>
+                                    <div class="nav-srh">
+                                        <div class="search-toggle">
+                                            <button class="search-icon icon-search"><i class="icofont-search-1"></i></button>
+                                            <button class="search-icon icon-close"><i class="icofont-close"></i></button>
+                                        </div>
+                                        <div class="search-area">
+                                            <form>
+                                                <input type="text" class="src-input" id="search-terms" placeholder="Search here..." />
+                                                <button type="submit" name="submit" value="Go" class="search-icon"><i class="icofont-search-1"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:unless="${session.uid}">
+                <div class="navbar-area sticky-top">
+                    <!-- Menu For Mobile Device -->
+                    <div class="mobile-nav">
+                        <a href="/" class="logo">
+                            <img src="assets/img/logo-two.png" alt="Logo">
+                        </a>
+                    </div>
+
+                    <!-- Menu For Desktop Device -->
+                    <div class="main-nav">
+                        <div class="container">
+                            <nav class="navbar navbar-expand-md navbar-light">
+                                <a class="navbar-brand" href="/">
+                                    <img src="assets/img/logo.png" alt="Logo">
+                                </a>
+                                <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item">
+                                            <a href="/" class="nav-link">Home</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link dropdown-toggle">User</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="nav-item">
+                                                    <a href="/UserLogin" class="nav-link">Login</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/UserSignup" class="nav-link">Sign Up</a>
+                                                </li>
+                                                
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link dropdown-toggle">Doctor</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="nav-item">
+                                                    <a href="/DoctorLogin" class="nav-link">Login</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/DoctorSignup" class="nav-link">Sign Up</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/AdminLogin" class="nav-link">Admin</a>
+                                        </li>
+                                    </ul>
+                                    <div class="nav-srh">
+                                        <div class="search-toggle">
+                                            <button class="search-icon icon-search"><i class="icofont-search-1"></i></button>
+                                            <button class="search-icon icon-close"><i class="icofont-close"></i></button>
+                                        </div>
+                                        <div class="search-area">
+                                            <form>
+                                                <input type="text" class="src-input" id="search-terms" placeholder="Search here..." />
+                                                <a href="AdminHeader.html"></a>
+                                                <button type="submit" name="submit" value="Go" class="search-icon"><i class="icofont-search-1"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
