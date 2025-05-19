@@ -37,7 +37,7 @@ public class DoctorRestController {
             }
 
             try {
-                ResultSet rs = DBLoader.executeQuery("select * from doctor where dname='" + name + "'");
+                ResultSet rs = DBLoader.executeQuery("select * from doctor where demail='" + email + "'");
                 if (rs.next()) {
                     return "failed";
                 } else {
@@ -300,6 +300,24 @@ public class DoctorRestController {
             }
         }
         catch(Exception ex) {
+            return ex.toString();
+        }
+    }
+    
+    @PostMapping("/doctorChangePassword")
+    public String changePassword(@RequestParam String email, @RequestParam String oldPassword, @RequestParam String newPassword, @RequestParam String confirmPassword,HttpSession session) {
+        try {
+            ResultSet rs = DBLoader.executeQuery("select * from doctor where demail='" + email + "' and dpass='" + oldPassword + "'");
+            if (rs.next()) {
+                rs.moveToCurrentRow();
+                rs.updateString("dpass", newPassword);
+                rs.updateRow();
+                session.removeAttribute("did");
+                return "success";
+            } else {
+                return "failure";
+            }
+        } catch (Exception ex) {
             return ex.toString();
         }
     }

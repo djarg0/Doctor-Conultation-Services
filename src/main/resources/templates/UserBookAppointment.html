@@ -36,17 +36,21 @@
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
         
        <script>
-           const params = new URLSearchParams(window.location.search);
+            const params = new URLSearchParams(window.location.search);
             const did= params.get('did');
 
+            window.onload = function () {
+                const today = new Date();
+                const yyyy = today.getFullYear();
+                const mm = String(today.getMonth() + 1).padStart(2, '0');
+                const dd = String(today.getDate()).padStart(2, '0');
+                const minDate = `${yyyy}-${mm}-${dd}`;
+                document.getElementById("datepicker").setAttribute("min", minDate);
+    }
             function go() {
                 
-                 
                 
-                
-
                 var s = document.getElementById("datepicker").value;
-                console.log(s);
                 
                 if(s === '')
                 {
@@ -64,7 +68,6 @@
 
             var slot_amount = 0;
             function renderhtml(ans) {
-                console.log(ans)
                 var mainobj = JSON.parse(ans);
                 var arr = mainobj.ans;
                 var count = 1;
@@ -226,7 +229,7 @@
                         <h2>Book Appointment</h2>
                         <ul>
                             <li>
-                                <a href="index.html">Home</a>
+                                <a href="/">Home</a>
                             </li>
                             <li>
                                 <i class="icofont-simple-right"></i>
@@ -250,7 +253,7 @@
         
             <div class="blog-area">
                 <div class="text-center row faq-area-two" style="margin-top: 70px">
-                    <h3>Date: <input type="date" id="datepicker" onchange="go()" class="alert alert-warning" ></h3>
+                    <h3 style="margin-top: 20px">Date: <input type="date" id="datepicker" onchange="go()" class="alert alert-dark"></h3>
                 </div>
                 
                 <div class="container">
@@ -278,123 +281,11 @@
         
 
         <!-- Footer -->
-        <footer class="pb-70">
-
-            
-
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="footer-item">
-                            <div class="footer-contact">
-                                <h3>Contact Us</h3>
-                                <ul>
-                                    <li>
-                                        <i class="icofont-ui-message"></i>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#b2dbdcd4ddf2dfd7d6dbc1d7c49cd1dddf"><span class="__cf_email__" data-cfemail="6b02050d042b060e0f02180e1d45080406">[email&#160;protected]</span></a>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#5038353c3c3f103d3534392335267e333f3d"><span class="__cf_email__" data-cfemail="e78f828b8b88a78a82838e948291c984888a">[email&#160;protected]</span></a>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-stock-mobile"></i>
-                                        <a href="tel:+07554332322">Call: +07 554 332 322</a>
-                                        <a href="tel:+236256256365">Call: +236 256 256 365</a>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-location-pin"></i>
-                                        210-27 Quadra, Market Street,<br> Victoria Canada
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-2">
-                        <div class="footer-item">
-                            <div class="footer-quick">
-                                <h3>Quick Links</h3>
-                                <ul>
-                                    <li>
-                                        <a href="about.html">About us</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog.html">Blog</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-details.html">Our Expertise</a>
-                                    </li>
-                                    <li>
-                                        <a href="faq.html">Faq</a>
-                                    </li>
-                                    <li>
-                                        <a href="doctor.html">Doctors</a>
-                                    </li>
-                                    <li>
-                                        <a href="contact.html">Contact us</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-item">
-                            <div class="footer-quick">
-                                <h3>Our Services</h3>
-                                <ul>
-                                    <li>
-                                        <a href="service-details.html">Dental Care</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Cardiology</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Hijama Therapy</a>
-                                    </li>
-                                    <li>
-                                       <a href="service-details.html">Massage Therapy</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Ambluance Sevices</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Medicine</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-item">
-                            <div class="footer-feedback">
-                                <h3>Feedback</h3>
-                                <form>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Phone">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea class="form-control" id="your_message" rows="5" placeholder="Message"></textarea>
-                                    </div>
-                                    <div class="text-left">
-                                        <button type="submit" class="btn feedback-btn">SUBMIT</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+       <div th:replace="Footer :: footer"></div>
         <!-- End Footer -->
 
         <!-- Copyright -->
-        <div class="copyright-area">
-            <div class="container">
-                <div class="copyright-item">
-                    <p>© <span>Medsev</span> is Proudly Owned by <a href="https://hibootstrap.com/" target="_blank">HiBoostrap</a></p>
-                </div>
-            </div>
-        </div>
+       
         <!-- End Copyright -->
 
 

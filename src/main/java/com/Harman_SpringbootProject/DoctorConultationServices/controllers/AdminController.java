@@ -40,4 +40,11 @@ public class AdminController {
         if(email==null)         return "redirect:/AdminLogin";
         else                    return "AdminManageDoctors";
     }
+    
+    @GetMapping("AdminChangePassword")
+    public String adminChangePassword(HttpSession session) {
+        String email= (String) session.getAttribute("email");
+        if(email==null)         return "redirect:/AdminLogin";
+        else                    return "AdminChangePassword";
+    }
 }

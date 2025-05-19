@@ -84,9 +84,15 @@ public class UserRestController {
         return ans;
     }
     
+    
     @PostMapping("getDoctors")
     public String getDoctors(@RequestParam String city, @RequestParam int sid) {
         String ans= new RDBMS_TO_JSON().generateJSON("SELECT DISTINCT s.*, d.did, d.dstatus, d.dslot_amount, d.dphoto, d.dname, d.dspecialityname FROM specialities s JOIN doctor d ON s.sname = d.dspecialityname WHERE d.dcity ='"+city+"' AND s.sid = '"+sid+"'");
+        return ans;
+    }
+    @PostMapping("getDoctors1")
+    public String getDoctors1() {
+        String ans= new RDBMS_TO_JSON().generateJSON("SELECT DISTINCT s.*, d.did, d.dstatus, d.dslot_amount, d.dphoto, d.dname, d.dspecialityname FROM specialities s JOIN doctor d ON s.sname = d.dspecialityname");
         return ans;
     }
     
@@ -210,5 +216,23 @@ public class UserRestController {
         Integer id = (Integer) session.getAttribute("uid");
         String ans= new RDBMS_TO_JSON().generateJSON("SELECT  booking.*, doctor.dname, doctor.dspecialityname, doctor.dcontact,user.uid, user.uname FROM booking JOIN booking_details ON booking.booking_id = booking_details.booking_id JOIN doctor ON booking.did = doctor.did JOIN user ON booking.uid = user.uid where booking.uid="+id+";");
        return ans;
+    }
+    
+    @PostMapping("/changePassword")
+    public String changePassword(@RequestParam String email, @RequestParam String oldPassword, @RequestParam String newPassword, @RequestParam String confirmPassword,HttpSession session) {
+        try {
+            ResultSet rs = DBLoader.executeQuery("select * from user where uemail='" + email + "' and upass='" + oldPassword + "'");
+            if (rs.next()) {
+                rs.moveToCurrentRow();
+                rs.updateString("upass", newPassword);
+                rs.updateRow();
+                session.removeAttribute("uid");
+                return "success";
+            } else {
+                return "failure";
+            }
+        } catch (Exception ex) {
+            return ex.toString();
+        }
     }
 }

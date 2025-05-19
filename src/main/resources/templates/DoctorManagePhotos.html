@@ -139,7 +139,7 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>Choose Photo</label>
-                                                <input type="file" class="form-control" id="photo">
+                                                <input type="file" accept="image/*" class="form-control" id="photo">
                                             </div>
                                         </div>
                                         <div class="col">
@@ -195,121 +195,9 @@
         </section>
 
         <!-- Footer -->
-        <footer class="footer-two pb-70">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="footer-item">
-                            <div class="footer-contact">
-                                <h3>Contact Us</h3>
-                                <ul>
-                                    <li>
-                                        <i class="icofont-ui-message"></i>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#d9b0b7bfb699b4bcbdb0aabcaff7bab6b4"><span class="__cf_email__" data-cfemail="b4dddad2dbf4d9d1d0ddc7d1c29ad7dbd9">[email&#160;protected]</span></a>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#d3bbb6bfbfbc93beb6b7baa0b6a5fdb0bcbe"><span class="__cf_email__" data-cfemail="39515c55555679545c5d504a5c4f175a5654">[email&#160;protected]</span></a>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-stock-mobile"></i>
-                                        <a href="tel:+07554332322">Call: +07 554 332 322</a>
-                                        <a href="tel:+236256256365">Call: +236 256 256 365</a>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-location-pin"></i>
-                                        210-27 Quadra, Market Street,<br> Victoria Canada
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-2">
-                        <div class="footer-item">
-                            <div class="footer-quick">
-                                <h3>Quick Links</h3>
-                                <ul>
-                                    <li>
-                                        <a href="about.html">About us</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog.html">Blog</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-details.html">Our Expertise</a>
-                                    </li>
-                                    <li>
-                                        <a href="faq.html">Faq</a>
-                                    </li>
-                                    <li>
-                                        <a href="doctor.html">Doctors</a>
-                                    </li>
-                                    <li>
-                                        <a href="contact.html">Contact us</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-item">
-                            <div class="footer-quick">
-                                <h3>Our Services</h3>
-                                <ul>
-                                    <li>
-                                        <a href="service-details.html">Dental Care</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Cardiology</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Hijama Therapy</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Massage Therapy</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Ambluance Sevices</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Medicine</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-item">
-                            <div class="footer-feedback">
-                                <h3>Feedback</h3>
-                                <form>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Phone">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea class="form-control" id="your_message" rows="5" placeholder="Message"></textarea>
-                                    </div>
-                                    <div class="text-left">
-                                        <button type="submit" class="btn feedback-btn">SUBMIT</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <div th:replace="Footer :: footer"></div>
         <!-- End Footer -->
 
-        <!-- Copyright -->
-        <div class="copyright-area">
-            <div class="container">
-                <div class="copyright-item">
-                    <p>© <span>Medsev</span> is Proudly Owned by <a href="https://hibootstrap.com/" target="_blank">HiBoostrap</a></p>
-                </div>
-            </div>
-        </div>
-        <!-- End Copyright -->
 
 
         <!-- Essential JS -->
@@ -336,31 +224,46 @@
         <script src="assets/js/jquery.appear.min.js"></script>
         <!-- Custom JS -->
         <script src="assets/js/custom.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <script>
                                                 function addPhoto() {
                                                     var photoDesc = document.getElementById("photoDesc").value;
                                                     var photo = document.getElementById("photo").files[0];
 
-                                                    var formData = new FormData();
-                                                    formData.append("photoDesc", photoDesc);
-                                                    formData.append("photo", photo);
+                                                    if(!photo || !photoDesc)
+                                                    {
+                                                        Swal.fire({
+                                                          icon:'warning',
+                                                          title:'Empty Fileds',
+                                                          text:'One or more fields are empty'
+                                                        });
+                                                    }
+                                                    else {
+                                                        var formData = new FormData();
+                                                        formData.append("photoDesc", photoDesc);
+                                                        formData.append("photo", photo);
 
-                                                    var url = "/addPhoto";
+                                                        var url = "/addPhoto";
 
-                                                    fetch(url, {method: "POST", body: formData})
-                                                            .then(response => response.text())
-                                                            .then(ans => renderHTML(ans));
+                                                        fetch(url, {method: "POST", body: formData})
+                                                                .then(response => response.text())
+                                                                .then(ans => renderHTML(ans));  
+                                                    }
                                                 }
 
                                                 function renderHTML(ans) {
                                                     if (ans === "success") {
                                                         showPhotos();
-                                                        alert("Photo Added Successfully");
-                                                    } else if (ans === "failed") {
-                                                        alert("Photo Already Added");
+                                                        Swal.fire({
+                                                            icon:'success',
+                                                            title:'Photo Added Successfully',
+                                                        });
                                                     } else {
-                                                        alert(ans);
+                                                        Swal.fire({
+                                                            icon:'error',
+                                                            title:'Something Went Wrong',
+                                                        });
                                                     }
                                                 }
 
@@ -402,12 +305,27 @@
 
 
                                                 function remove(id) {
-                                                    var url = "/delete";
-                                                    var formData = new FormData();
-                                                    formData.append("id", id);
-                                                    fetch(url, {method: "POST", body: formData})
-                                                            .then(response => response.text())
-                                                            .then(ans => renderDelete(ans));
+                                                    
+                                                    Swal.fire({
+                                                        title: "Are You Sure You Want To Delete This Photo?",
+                                                        showDenyButton: true,
+                                                        confirmButtonText: "Yes",
+                                                        denyButtonText: `No`
+                                                      }).then((result) => {
+                                                        /* Read more about isConfirmed, isDenied below */
+                                                        if (result.isConfirmed) {
+                                                            var url = "/delete";
+                                                            var formData = new FormData();
+                                                            formData.append("id", id);
+                                                            fetch(url, {method: "POST", body: formData})
+                                                                .then(response => response.text())
+                                                                .then(ans => renderDelete(ans));
+                                                          Swal.fire("Deleted!", "", "success");
+                                                        } else if (result.isDenied) {
+                                                          Swal.fire("Cancelled!", "", "info");
+                                                        }
+                                                      });
+                                                    
                                                 }
                                                 function renderDelete(ans) {
                                                     showPhotos();

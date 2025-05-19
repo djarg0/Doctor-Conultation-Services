@@ -37,7 +37,7 @@
         
         
     </head>
-    <body onload="getSpecialities()">
+    <body onload="showCities()">
 
         <!-- Preloader -->
         <div class="loader">
@@ -111,58 +111,46 @@
         <!-- Start Navbar Area -->
         <div th:replace="UserHeader :: header"></div>
 
-
-
         <!-- End Navbar Area -->
 
-        <div class="page-title-area page-title-two">
-            <div class="d-table">
-                <div class="d-table-cell">
-                    <div class="page-title-item">
-                        <h2>Specialities</h2>
-                        <ul>
-                            <li>
-                                <a href="/">Home</a>
-                            </li>
-                            <li>
-                                <i class="icofont-simple-right"></i>
-                            </li>
-                            <li>Specialities</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        
-        
-        <section class="expertise-area pt-100 pb-70">
+        <section class="blog-area pt-100 pb-70">
             <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-lg-6 expertise-item">
-                        <div class="row justify-content-center" id="showCard">
-                            
-                            
-                            <div class="col-sm-6 col-lg-6 wow fadeInUp" data-wow-delay=".5s">
+                <div class="section-title-two">
+                    <span>Cities</span>
+                    <h2>Services Available Here</h2>
+                </div>
+                <div id="cityCard" class="row justify-content-center">
+                    <div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".3s">
+                        <div class="blog-item">
+                            <div class="blog-top">
                                 <a href="blog-details.html">
-                                    <div class="expertise-inner">
-                                        <i class="icofont-ambulance-cross"></i>
-                                        <h3>Ambulance</h3>
-                                    </div>
+                                    <img src="assets/img/home-one/11.jpg" alt="Blog">
                                 </a>
+                            </div>
+                            <div class="blog-bottom">
+                                <h3>
+                                    <a href="blog-details.html">In this hospital there are special surgeon.</a>
+                                </h3>
+                                <p>Lorem ipsum is  dolor sit amet, csectetur adipiscing elit, dolore smod tempor incididunt ut labore et....</p>
+                                <ul>
+                                    <li>
+                                        <a href="blog-details.html">
+                                            Read More
+                                            <i class="icofont-long-arrow-right"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <i class="icofont-calendar"></i>
+                                        Jan 03, 2024
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 expertise-item">
-                        <div class="expertise-right">
-                            <img src="assets/img/home-one/6.jpg" alt="Expertise">
-                        </div>
-                    </div>
                 </div>
+                 
             </div>
         </section>
-        
-
         <!-- Footer -->
         <div th:replace="Footer :: footer"></div>
         <!-- End Footer -->
@@ -196,51 +184,57 @@
         <script src="assets/js/custom.js"></script>
 
         <script>
-            const params = new URLSearchParams(window.location.search);
-            const city = params.get('city');
-                                            
-                                            function getSpecialities() {
-                                                    var url="/getSpeciality";
-                                                    var formData= new FormData();
-                                                    formData.append("city", city);
-                                                    fetch(url, {method: "POST", body: formData})
-                                                            .then(response => response.text())
-                                                            .then(ans2 => renderHTMLforSpecialities(ans2));
+                                        function showCities() {
+                                                var url="/showCity";
+                                                
+                                                fetch(url, {method: "POST"})
+                                                        .then(response => response.text())
+                                                        .then(ans2 => renderHTMLforCities(ans2));
                                             }
-                                            function renderHTMLforSpecialities(ans2) {
+                                            function renderHTMLforCities(ans2) {
                                                 
                                                 var mainobj= JSON.parse(ans2);
                                                 var arr= mainobj["ans"];
                                                 
-                                                var s="";
-                                                var temp="";
-                                                for(var i=0; i<arr.length; i++) {
-                                                    if(arr[i].dstatus==="accepted") {
-                                                        if(temp===arr[i].sname) {
-                                                        }
-                                                        else {
-                                                            temp=arr[i].sname;
-                                                            var orgName= arr[i].sphoto;
-                                                            var filePath= "myUploads/"+ orgName;
-                                                            s += 
-                                                            `<div class="col-sm-4 col-lg-4 wow fadeInUp" data-wow-delay=".5s">
-                                                                <a href="/UserShowDoctors?city=${arr[i].dcity}&sid=${arr[i].sid}">
-                                                                    <div class="expertise-inner">
-                                                                        <img src=${filePath}>
-                                                                        <h3>${arr[i].sname}</h3>
-                                                                    </div>
-                                                                </a>
-                                                            </div>`;
-                                                        }
-                                                    }
+                                                var s = "";
+                                                for(var i = 0;i<arr.length;i++)
+                                                {
+                                                    var city= arr[i].cityname;
+                                                    var orgName= arr[i].cityphoto;
+                                                    var filePath= "myUploads/" + orgName;
+                                                    s+=`<div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".3s">
+                                                    <div class="blog-item">
+                                                    <div class="blog-top">
+                                                    <a href="/UserShowSpeciality?city=${city}">
+                                                    <img src=${filePath}>
+                                                    </a>
+                                                    </div>
+                                                    <div class="blog-bottom">
+                                                    <h3>
+                                                    <a href="/UserShowSpeciality?city=${city}">${arr[i].cityname}</a>
+                                                    </h3>
+                                                    <p>${arr[i].citydesc}</p>
+                                                    <ul>
+                                                    <li>
+                                                    <a href="/UserShowSpeciality?city=${city}">
+                                                    Specialities
+                                                    <i class="icofont-long-arrow-right"></i>
+                                                    </a>
+                                                    </li>
+                                                    <li>
+                                                    <i class="icofont-calendar"></i>
+                                                    Jan 03, 2024
+                                                    </li>
+                                                    </ul>
+                                                    </div>
+                                                    </div>
+                                                    </div>`;
+                                                    
                                                 }
-                                                document.getElementById("showCard").innerHTML= s;
+                                                    //alert(arr);
+                                              document.getElementById("cityCard").innerHTML= s;
                                             }
-                                            
-                                            
-                                            
-                                            
-                                            
+            
         </script>
     </body>
 

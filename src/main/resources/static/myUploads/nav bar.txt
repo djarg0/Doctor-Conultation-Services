@@ -1,0 +1,6 @@
+nav bar
+dead links
+all logouts
+change password
+route secure
+form validations

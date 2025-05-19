@@ -190,4 +190,22 @@ public class AdminRestController {
         }
     }
     
+    @PostMapping("/adminChangePassword")
+    public String adminChangePassword(@RequestParam String email, @RequestParam String oldPassword, @RequestParam String newPassword, @RequestParam String confirmPassword,HttpSession session) {
+        try {
+            ResultSet rs = DBLoader.executeQuery("select * from admin where email='" + email + "' and password='" + oldPassword + "'");
+            if (rs.next()) {
+                rs.moveToCurrentRow();
+                rs.updateString("password", newPassword);
+                rs.updateRow();
+                session.removeAttribute("email");
+                return "success";
+            } else {
+                return "failure";
+            }
+        } catch (Exception ex) {
+            return ex.toString();
+        }
+    }
+    
 }

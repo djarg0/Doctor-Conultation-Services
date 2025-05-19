@@ -22,6 +22,18 @@ public class UserController {
          return "index";
     }
     
+    @GetMapping("/UserShowCities")
+    public String userShowCities(HttpSession session) {
+        Integer uid=(Integer) session.getAttribute("uid");
+        if(uid == null)
+        {
+            return "redirect:/UserLogin";
+        }
+        else{
+            return "UserShowCities";
+        }
+    }
+    
     @GetMapping("/UserShowSpeciality")
     public String userShowSpeciality(HttpSession session) {
         Integer uid=(Integer) session.getAttribute("uid");
@@ -100,5 +112,17 @@ public class UserController {
     {
         session.invalidate();
         return "redirect:/";
+    }
+    
+    @GetMapping("/UserChangePassword")
+    public String userChangePassword(HttpSession session) {
+        Integer uid=(Integer) session.getAttribute("uid");
+        if(uid == null)
+        {
+            return "redirect:/UserLogin";
+        }
+        else{
+            return "UserChangePassword";
+        }
     }
 }

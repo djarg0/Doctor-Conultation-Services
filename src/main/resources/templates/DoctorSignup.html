@@ -198,7 +198,7 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>Photo</label>
-                                                <input type="file" id="photo" class="form-control">
+                                                <input type="file" accept="image/*" id="photo" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -225,12 +225,7 @@
                                                 <input type="text" id="slotAmount" class="form-control" placeholder="Slot Amount">
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label>Description</label>
-                                                <textarea id="desc" class="form-control" placeholder="Description"></textarea>
-                                            </div>
-                                        </div>
+                                        
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>Experience</label>
@@ -243,15 +238,10 @@
                                                 <textarea id="education" class="form-control" placeholder="Education"></textarea>
                                             </div>
                                         </div>
-
-                                        <div class="col-lg-12">
+                                        <div class="col-lg-6">
                                             <div class="form-group">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                                    <label class="form-check-label" for="gridCheck">
-                                                        Yes, I agree with all <a href="#">Terms & Conditions</a>
-                                                    </label>
-                                                </div>
+                                                <label>Description</label>
+                                                <textarea id="desc" class="form-control" placeholder="Description"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
@@ -270,121 +260,9 @@
         <!-- End Sign Up -->
 
         <!-- Footer -->
-        <footer class="footer-two pb-70">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="footer-item">
-                            <div class="footer-contact">
-                                <h3>Contact Us</h3>
-                                <ul>
-                                    <li>
-                                        <i class="icofont-ui-message"></i>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#761f181019361b13121f0513005815191b"><span class="__cf_email__" data-cfemail="b6dfd8d0d9f6dbd3d2dfc5d3c098d5d9db">[email&#160;protected]</span></a>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#0e666b6262614e636b6a677d6b78206d6163"><span class="__cf_email__" data-cfemail="462e232a2a29062b23222f3523306825292b">[email&#160;protected]</span></a>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-stock-mobile"></i>
-                                        <a href="tel:+07554332322">Call: +07 554 332 322</a>
-                                        <a href="tel:+236256256365">Call: +236 256 256 365</a>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-location-pin"></i>
-                                        210-27 Quadra, Market Street,<br> Victoria Canada
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-2">
-                        <div class="footer-item">
-                            <div class="footer-quick">
-                                <h3>Quick Links</h3>
-                                <ul>
-                                    <li>
-                                        <a href="about.html">About us</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog.html">Blog</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-details.html">Our Expertise</a>
-                                    </li>
-                                    <li>
-                                        <a href="faq.html">Faq</a>
-                                    </li>
-                                    <li>
-                                        <a href="doctor.html">Doctors</a>
-                                    </li>
-                                    <li>
-                                        <a href="contact.html">Contact us</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-item">
-                            <div class="footer-quick">
-                                <h3>Our Services</h3>
-                                <ul>
-                                    <li>
-                                        <a href="service-details.html">Dental Care</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Cardiology</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Hijama Therapy</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Massage Therapy</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Ambluance Sevices</a>
-                                    </li>
-                                    <li>
-                                        <a href="service-details.html">Medicine</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-item">
-                            <div class="footer-feedback">
-                                <h3>Feedback</h3>
-                                <form>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Phone">
-                                    </div>
-                                    <div class="form-group">
-                                        <textarea class="form-control" id="your_message" rows="5" placeholder="Message"></textarea>
-                                    </div>
-                                    <div class="text-left">
-                                        <button type="submit" class="btn feedback-btn">SUBMIT</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <div th:replace="Footer :: footer"></div>
         <!-- End Footer -->
 
-        <!-- Copyright -->
-        <div class="copyright-area">
-            <div class="container">
-                <div class="copyright-item">
-                    <p>© <span>Medsev</span> is Proudly Owned by <a href="https://hibootstrap.com/" target="_blank">HiBoostrap</a></p>
-                </div>
-            </div>
-        </div>
-        <!-- End Copyright -->
 
 
         <!-- Essential JS -->
@@ -411,8 +289,13 @@
         <script src="assets/js/jquery.appear.min.js"></script>
         <!-- Custom JS -->
         <script src="assets/js/custom.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <script>
+            
+                                    function isValidEmail(email) {
+                                        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+                                    }
 
                                     function specialityList() {
                                         var url = "/specialityList";
@@ -459,47 +342,80 @@
                                                 var address = document.getElementById("address").value;
                                                 var photo = document.getElementById("photo").files[0];
 
-                                                if(password===password2) {
-                                                    
-                                                    
-                                                    
-                                                var formData = new FormData();
-                                                formData.append("name", name);
-                                                formData.append("contact", contact);
-                                                formData.append("email", email);
-                                                formData.append("password", password);
-                                                formData.append("speciality", speciality);
-                                                formData.append("city", city);
-                                                formData.append("longitude", longitude);
-                                                formData.append("latitude", latitude);
-                                                formData.append("startTime", startTime);
-                                                formData.append("endTime", endTime);
-                                                formData.append("slotAmount", slotAmount);
-                                                formData.append("desc", desc);
-                                                formData.append("experience", experience);
-                                                formData.append("education", education);
-                                                formData.append("address", address);
-                                                formData.append("photo", photo);
-                                                
-                                                var url = "/addDoctor";
+                                                if(!photo || !name || !password || !password2 || !address || !speciality || !email || !contact || !city || !longitude || !latitude || !startTime || !endTime || !slotAmount
+                                                        || !desc || !experience || !education)
+                                                {
+                                                    Swal.fire({
+                                                      icon:'warning',
+                                                      title:'Empty Fileds',
+                                                      text:'One or more fields are empty'
+                                                    });
+                                                }
+                                                else {    
+                                                    if(password!==password2) {
+                                                        Swal.fire({
+                                                            icon:'warning',
+                                                            title:'Passwords Do Not Match'
+                                                        }); 
+                                                    }
+                                                    else if(contact.length!=10) {
+                                                        Swal.fire({
+                                                            icon:'warning',
+                                                            title:'Mobile Number Can Only Be Of 10 Digits'
+                                                        }); 
+                                                    }
+                                                    else if(!/^\d+$/.test(contact) || !/^\d+$/.test(slotAmount) || !isValidEmail(email)) {
+                                                        Swal.fire({
+                                                            icon:'warning',
+                                                            title:'Invalid Format(s)'
+                                                        });
+                                                    }
+                                                    else {
+                                                        var formData = new FormData();
+                                                        formData.append("name", name);
+                                                        formData.append("contact", contact);
+                                                        formData.append("email", email);
+                                                        formData.append("password", password);
+                                                        formData.append("speciality", speciality);
+                                                        formData.append("city", city);
+                                                        formData.append("longitude", longitude);
+                                                        formData.append("latitude", latitude);
+                                                        formData.append("startTime", startTime);
+                                                        formData.append("endTime", endTime);
+                                                        formData.append("slotAmount", slotAmount);
+                                                        formData.append("desc", desc);
+                                                        formData.append("experience", experience);
+                                                        formData.append("education", education);
+                                                        formData.append("address", address);
+                                                        formData.append("photo", photo);
 
-                                                fetch(url, {method: "POST", body: formData})
-                                                        .then(response => response.text())
-                                                        .then(ans => renderHTMLforDoctor(ans));
-                                            }
+                                                        var url = "/addDoctor";
+
+                                                        fetch(url, {method: "POST", body: formData})
+                                                                .then(response => response.text())
+                                                                .then(ans => renderHTMLforDoctor(ans));
+                                                    }
+                                                }
                                             
-                                            else {
-                                                alert("Passwords Do Not Match")
-                                            }
+                                            
                                             }
 
                                             function renderHTMLforDoctor(ans) {
                                                 if (ans === "success") {
-                                                    alert("Request Sent Successfully");
+                                                    Swal.fire({
+                                                        icon:'success',
+                                                        title:'Request Sent!',
+                                                    });
                                                 } else if (ans === "failed") {
-                                                    alert("Request Already Exists");
+                                                    Swal.fire({
+                                                        icon:'error',
+                                                        title:'Email Already Has A Linked Account!',
+                                                    });
                                                 } else {
-                                                    alert(ans);
+                                                    Swal.fire({
+                                                        icon:'error',
+                                                        title:'Something Went Wrong!',
+                                                    });
                                                 }
                                             }
         </script>

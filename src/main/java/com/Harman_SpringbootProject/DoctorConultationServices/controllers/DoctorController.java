@@ -45,4 +45,11 @@ public class DoctorController {
         if(did==null)       return "redirect:/DoctorLogin";
         else                return "DoctorManageAppointments";
     }
+    
+    @GetMapping("DoctorChangePassword")
+    public String DoctorChangePassword(HttpSession session) {
+        Integer did= (Integer) session.getAttribute("did");
+        if(did==null)       return "redirect:/DoctorLogin";
+        else                return "DoctorChangePassword";
+    }
 }
