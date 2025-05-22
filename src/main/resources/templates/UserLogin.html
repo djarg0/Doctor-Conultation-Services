@@ -51,59 +51,7 @@
         <!-- End Preloader -->
         
         <!-- Header Top -->
-        <div class="header-top">
-            <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-sm-9 col-lg-9">
-                        <div class="header-top-item">
-                            <div class="header-top-left">
-                                <ul>
-                                    <li>
-                                        <a href="tel:+07554332322">
-                                            <i class="icofont-ui-call"></i>
-                                            Call : +07 554 332 322
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#543c3138383b143931302731227a373b39">
-                                            <i class="icofont-ui-message"></i>
-                                            <span class="__cf_email__" data-cfemail="3e565b5252517e535b5a4d5b48105d5153">[email&#160;protected]</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-location-pin"></i>
-                                        210-27 Quadra, Canada 
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-lg-3">
-                        <div class="header-top-item">
-                            <div class="header-top-right">
-                                <ul>
-                                    <li>
-                                        <a href="https://www.facebook.com/login/" target="_blank">
-                                            <i class="icofont-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://twitter.com/login/" target="_blank">
-                                            <i class="icofont-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                       <a href="https://www.pinterest.com/" target="_blank">
-                                            <i class="icofont-pinterest"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div th:replace="Header :: headertop"></div>
         <!-- End Header Top -->
         
         <!-- Start Navbar Area -->
@@ -141,7 +89,13 @@
                                                 <input type="password" class="form-control" id="password" placeholder="Password">
                                             </div>
                                         </div>
-                                        
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <div class="forgot-pass">
+                                                    <a href="#" onclick="forgot()">Forgot Password?</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="col-lg-12">
                                             <div class="text-center">
                                                 <input type="button" class="btn signup-btn" onclick="login()" value="Login">
@@ -236,6 +190,87 @@
                     });
                 }
             }
+            
+            function forgot()
+            {
+                var email8 = document.getElementById("email").value;
+                otp = Math.floor(1000 + Math.random() * 9000);
+
+                if (!email8)
+                {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Enter Email',
+                        text: 'Please Enter Email First'
+                    });
+                } else {
+                    var url = "/forgot?email=" + email8 + "&otp=" + otp;
+                    fetch(url)
+                            .then(response => response.text())
+                            .then(ans => renderAsHtml5(ans));
+                }
+            }
+
+            function renderAsHtml5(ans) {
+                if (ans === "success") {
+                    Swal.fire({
+                        title: 'Enter OTP',
+                        html:
+                                '<input type="text" id="otpInput" class="swal2-input" placeholder="Enter OTP">' +
+                                '<button onclick="verifyOtpFromModal()" class="swal2-confirm swal2-styled" style="margin-top: 10px;">Verify OTP</button>',
+                        showConfirmButton: false
+                    });
+
+
+                    
+
+
+                } else if (ans === "fail") {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Invalid Email',
+                        text: 'Email not registered for User'
+                    });
+                } else {
+                    alert(ans);
+                }
+            }
+
+            function verifyOtpFromModal() {
+                        var inp = document.getElementById("otpInput").value;
+                        if (otp == inp)
+                        {
+                            var email = document.getElementById("email").value;
+                            var url = "/otpverify?email=" + email;
+                            fetch(url)
+                                    .then(response => response.text())
+                                    .then(ans => {
+                                        if (ans === "success")
+                                        {
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Otp Success',
+                                                text: 'Please Check Your Email for the Password'
+                                            });
+
+                                        } else if (ans === "fail")
+                                        {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Otp Invalid',
+                                                text: 'Please Check Your Email for the OTP'
+                                            });
+                                        }
+                                    });
+                        } else {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Invalid Otp',
+                                text: 'Please Enter Valid Otp'
+                            });
+                        }
+
+                    }
         </script>
     </body>
 

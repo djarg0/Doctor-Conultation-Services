@@ -9,10 +9,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.sql.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class AdminRestController {
+    @Autowired
+    public EmailSenderService email;
     
     @PostMapping("/alogin")
     public String alogin(@RequestParam String email, @RequestParam String password, HttpSession session) {
@@ -191,7 +194,8 @@ public class AdminRestController {
     }
     
     @PostMapping("/adminChangePassword")
-    public String adminChangePassword(@RequestParam String email, @RequestParam String oldPassword, @RequestParam String newPassword, @RequestParam String confirmPassword,HttpSession session) {
+    public String adminChangePassword(@RequestParam String oldPassword, @RequestParam String newPassword, @RequestParam String confirmPassword,HttpSession session) {
+        String email= (String) session.getAttribute("email");
         try {
             ResultSet rs = DBLoader.executeQuery("select * from admin where email='" + email + "' and password='" + oldPassword + "'");
             if (rs.next()) {
@@ -208,4 +212,47 @@ public class AdminRestController {
         }
     }
     
+    @GetMapping("/aforgot")
+    public String aforgot(@RequestParam String email, @RequestParam String otp) {
+        try {
+            ResultSet rs = DBLoader.executeQuery("select * from admin where email='" + email + "'");
+            if (rs.next()) {
+                String body = "Your otp for login page is =" + otp;
+                String subject = "Login Authntication";
+                this.email.sendSimpleEmail(email, body, subject);
+                return "success";
+            } else {
+                return "fail";
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ex.toString();
+        }
+    }
+
+    @GetMapping("/aotpverify")
+    public String aotpverify(@RequestParam String email) {
+        try {
+            ResultSet rs = DBLoader.executeQuery("select * from admin where email='" + email + "'");
+            if (rs.next()) {
+                rs.moveToCurrentRow();
+                String pass = rs.getString("password");
+                String subject = "Your Account Password - JC Pawfect";
+                String body = "Dear Admin,\n\n"
+                        + "As per your request, here is your account password:\n\n"
+                        + "Password: " + pass + "\n\n"
+                        + "Please do not share this password with anyone.\n"
+                        + "We recommend changing your password after login for better security.\n\n"
+                        + "Regards,\n"
+                        + "Team Doc";
+                this.email.sendSimpleEmail(email, body, subject);
+                return "success";
+            } else {
+                return "fail";
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ex.toString();
+        }
+    }
 }

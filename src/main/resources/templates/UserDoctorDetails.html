@@ -30,12 +30,16 @@
         <link rel="stylesheet" href="assets/css/responsive.css">
         <!-- Theme Dark CSS -->
         <link rel="stylesheet" href="assets/css/theme-dark.css">
-
+        <script  src="js/jquery-3.6.0.min.js"></script><!-- JQUERY.MIN JS -->
+        <script  src="js/popper.min.js"></script><!-- POPPER.MIN JS -->
+        <script  src="js/bootstrap.min.js"></script><!-- BOOTSTRAP.MIN JS -->
+        
+        
         <title>Medsev - Healthcare Clinic & Doctor HTML Template</title>
 
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
     </head>
-    <body onload="doctorDetails(), showPhotos()">
+    <body onload="doctorDetails(), showPhotos(), userShowRatings()">
         
         <!-- Preloader -->
         <div class="loader">
@@ -51,59 +55,7 @@
         <!-- End Preloader -->
 
         <!-- Header Top -->
-        <div class="header-top">
-            <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-sm-9 col-lg-9">
-                        <div class="header-top-item">
-                            <div class="header-top-left">
-                                <ul>
-                                    <li>
-                                        <a href="tel:+07554332322">
-                                            <i class="icofont-ui-call"></i>
-                                            Call : +07 554 332 322
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#79111c15151639141c1d0a1c0f571a1614">
-                                            <i class="icofont-ui-message"></i>
-                                            <span class="__cf_email__" data-cfemail="9af2fff6f6f5daf7fffee9ffecb4f9f5f7">[email&#160;protected]</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-location-pin"></i>
-                                        210-27 Quadra, Canada 
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-lg-3">
-                        <div class="header-top-item">
-                            <div class="header-top-right">
-                                <ul>
-                                    <li>
-                                        <a href="https://www.facebook.com/login/" target="_blank">
-                                            <i class="icofont-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://twitter.com/login/" target="_blank">
-                                            <i class="icofont-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                       <a href="https://www.pinterest.com/" target="_blank">
-                                            <i class="icofont-pinterest"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div th:replace="Header :: headertop"></div>
         <!-- End Header Top -->
         
         <!-- Start Navbar Area -->
@@ -115,7 +67,83 @@
         
         </div>
         <!-- End Doctor Details -->
-    
+        <div class="container">
+        <div class="row justify-content-center">
+        <div class="col-lg-12" style="text-align: center">
+            <button type="button" class="btn btn-outline-primary btn-lg" style="border-radius: 10px;" onclick="review()" />Add Review</button>
+
+                                </div>
+
+                                <h2 style="text-align: center;" >Average Rating</h2>
+                                <div id="averagerating" >
+
+                                </div>
+                                <h2 style="text-align: center; margin-top: 30px" >All Ratings</h2>
+                                <div id="showratings" >
+
+                                </div>
+
+                                <div class="modal" id="myModal1" >
+                                    <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header " style="background: blue;" >
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title" style="color: white;"> Add Review</h4>
+                                            </div>
+                                            <div class="modal-body " >
+                                                <div>
+
+
+
+                                                    <div id="all">
+
+                                                        <form action="" method="post" id="form1">
+                                                            <table>
+                                                                <tr> <label class="form-group"> Give Ratings..</label>
+                                                                <td>
+                                                                    <img id="rating_1" src="rating/empty_star.png" onmouseover="fill(this);" onmouseout="unfill(this);" onclick="selected(this);" width="50px;" height="50px;">
+                                                                </td>
+                                                                <td>
+                                                                    <img id="rating_2" src="rating/empty_star.png" onmouseover="fill(this)" onmouseout="unfill(this)" onclick="selected(this)" width="50px;" height="50px;">
+                                                                </td>
+                                                                <td>
+                                                                    <img id="rating_3" src="rating/empty_star.png" onmouseover="fill(this)" onmouseout="unfill(this)" onclick="selected(this)" width="50px;" height="50px;">
+                                                                </td>
+                                                                <td>
+                                                                    <img id="rating_4" src="rating/empty_star.png" onmouseover="fill(this)" onmouseout="unfill(this)" onclick="selected(this)" width="50px;" height="50px;">
+                                                                </td>
+                                                                <td>
+                                                                    <img  id="rating_5" src="rating/empty_star.png" onmouseover="fill(this)" onmouseout="unfill(this)" onclick="selected(this)" width="50px;" height="50px;">
+                                                                </td>
+                                                                </tr>
+                                                            </table>
+                                                            <br>
+                                                            <label> Write Comment : </label> <input style="border-radius: 20px;" type="text" id="comment"  class="form-group"/>
+                                                            <input type="button" value="Submit" class="btn btn-primary"
+                                                                   style="border-radius: 10px;text-shadow: 2px 2px 5px black" onclick="addreview()" />
+                                                            <label style="display: none;color: tomato;" id="label1">Please Select Any Rating</label>
+
+                                                        </form>
+                                                    </div>
+
+                                                </div>   
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer " style="background: blue;" >
+                                            <button type="button" class="btn btn-outline-light " style="border-radius: 10px; color: white" data-dismiss="modal"  >Close</button>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+                                
+                                
         <div class="section-title-two row text-center">
             <h2>Gallery</h2>
         </div>
@@ -156,6 +184,15 @@
         </div>
     </div>
         <br>
+        <div class="section-title-two row text-center">
+            <h2>Location</h2>
+        </div>
+        <div class="drop-item drop-img">
+            <div class="container">
+                <iframe id="map" src="https://www.google.com/maps?q=31.636523442320865,74.87415384903204&z=15&output=embed" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </div>
+        </div>
+        
         
         <!-- Footer -->
         <div th:replace="Footer :: footer"></div>
@@ -204,7 +241,11 @@
                                                 
                                                 var mainobj= JSON.parse(ans2);
                                                 var arr= mainobj["ans"];
-                                                console.log(arr);
+                                                
+                                                var dlatitude =  arr[0].dlatitude;
+                                                var dlongitude = arr[0].dlongitude;
+                                                
+                                                document.getElementById("map").src= "https://www.google.com/maps?q=" + dlatitude +","+ dlongitude + "&z=15&output=embed";
                                                 
                                                 var orgName= arr[0].dphoto;
                                                 var filePath= "myUploads/"+ orgName;
@@ -298,7 +339,6 @@
                                             function renderPhotos(ans) {
                                             var mainobj = JSON.parse(ans);
                                             var arr = mainobj["ans"];
-                                            console.log(arr);
 
                                             // Get the slider container
                                             var container = document.querySelector(".home-slider");
@@ -349,13 +389,204 @@
                                             function book() {
                                                 window.location.href="/UserBookAppointment?did="+did;
                                             }
-
                                             
+                                            
+            var xhr = new XMLHttpRequest();
+            function review()
+            {
+                $("#myModal1").modal("show");
+            }
+
+            var n = 0;
+            function fill(obj)
+            {
+                var img = obj.src;
+                var id = obj.id;
+                var val = parseInt(id.substring(id.indexOf("_") + 1));
+                var i;
+                if (n === 0)
+                {
+                    i = 1;
+                } else
+                {
+                    i = n + 1;
+                }
+                for (; i <= 5; i++)
+                {
+                    if (i <= val)
+                    {
+                        document.getElementById("rating_" + i).src = "rating/filled_star.png";
+
+                    } else
+                    {
+                        document.getElementById("rating_" + i).src = "rating/empty_star.png";
+                    }
+                }
+
+            }
+            function selected(obj)
+            {
+                var id = obj.id;
+                var val = parseInt(id.substring(id.indexOf("_") + 1));
+                n = val;
+            }
+            function unfill(obj)
+            {
+                var i;
+                if (n === 0)
+                {
+                    i = 1;
+                } else
+                {
+                    i = n + 1;
+                }
+                for (; i <= 5; i++)
+                {
+                    document.getElementById("rating_" + i).src = "rating/empty_star.png";
+                }
+            }
+
+            function addreview()
+            {
+                //var doctor_email = document.getElementById("d2").innerText;
+
+                var comment = document.getElementById("comment").value;
+                
+
+                var url = "./userAddReview?did=" + did + "&rating=" + n + "&comment=" + comment;
+
+                fetch(url).then(response => response.text())
+                        .then(ans => renderAddReviewResponse(ans));
+
+
+            }
+
+            function renderAddReviewResponse(ans) {
+                alert(ans);
+            }
+
+            function userShowRatings() {
+                //var doctor_email = document.getElementById("d2").innerText;
+                //1. Make object of XMLHttpRequest
+                var xhttp = new XMLHttpRequest();
+
+                //4. Receive XMLHttpResponse from server & use ans
+
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var res = this.responseText;
+                        res = res.trim();
+                        var mainobj = JSON.parse(res);
+                        var arr = mainobj["ans"];
+
+                        var ren = "";
+
+                        for (var i = 0; i < arr.length; i++)
+                        {
+                            var st = arr[i];
+                            ren += "<div class=\"row\" >";
+
+                            
+                            ren += "<div class= \"col-sm-3\" style=\"text-align: center\" >";
+                            ren += "<div class=\"card-body\">";
+                            ren += "<label class=\"card-text text-alli\" style=\"font-size: 16px;text-align: center;color: #005b9a\" ><b>User Email : </b><br>" + st.uemail + "</label><br><br>";
+                            ren += "</div>";
+                            ren += "</div>";
+
+
+                            ren += "<div class= \"col-sm-6\" style=\"text-align: center\" >";
+                            ren += "<div class=\"card-body\">";
+                            for (var j = 0; j < st.rating; j++) {
+                                ren += "<img class=\"img-thumbnail\" style=\"border: 2px solid black; border-radius: 10px;width: 20px; height: 20px\" src=\"rating/filled_star.png\" >";
+                            }
+                            for (var j = st.rating; j < 5; j++) {
+                                ren += "<img class=\"img-thumbnail\" style=\"border: 2px solid black; border-radius: 10px;width: 20px; height: 20px\" src=\"rating/empty_star.png\" >";
+                            }
+                            ren += "</div>";
+                            ren += "</div>";
+                            
+                            
+                            
+                            ren += "<div class= \"col-sm-3\" style=\"text-align: center\" >";
+                            ren += "<div class=\"card-body\">";
+                            ren += "<label class=\"card-text text-alli\" style=\"font-size: 16px;text-align: center;color: #005b9a\" ><b>Comment : </b><br>" + st.comment + "</label><br><br>";
+                            ren += "</div>";
+                            ren += "</div>";
+                            
+                            ren += "</div>";
+
+                        }
+
+                        document.getElementById("showratings").innerHTML = ren;
+                        averageRating();
+                    }
+                };
+                //2. Prepare request (Define target --> servlet)
+                xhttp.open("GET", "./userShowRatings?did=" + did, true);
+
+                //3. Send Request
+                xhttp.send();
+            }
+
+            function averageRating() {
+                //var doctor_email = document.getElementById("d2").innerText;
+
+                //1. Make object of XMLHttpRequest
+                var xhttp = new XMLHttpRequest();
+
+                //4. Receive XMLHttpResponse from server & use ans
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var res = this.responseText;
+                        res = res.trim();
+//                        alert(res);
+                        var mainobj = JSON.parse(res);
+                        var arr = mainobj["ans"];
+
+                        var ren = "";
+
+                        var st = arr[0];
+                        var rating2 = st.r1;
+                        var getdecimal = rating2.toString().split(".")[1];
+                        if (parseInt(getdecimal) == 0) {
+                            ren += "<div class= \"col-sm-12\" style=\"text-align: center\" >";
+                            ren += "<div class=\"card-body\">";
+                            for (var j = 0; j < st.r1; j++) {
+                                ren += "<img class=\"img-thumbnail\" style=\"border: 2px solid black; border-radius: 10px;width: 20px; height: 20px\" src=\"rating/filled_star.png\" >";
+                            }
+                            for (var j = st.r1; j < 5; j++) {
+                                ren += "<img class=\"img-thumbnail\" style=\"border: 2px solid black; border-radius: 10px;width: 20px; height: 20px\" src=\"rating/empty_star.png\" >";
+                            }
+                            ren += "</div>";
+                            ren += "</div>";
+                        } else {
+                            ren += "<div class= \"col-sm-12\" style=\"text-align: center\" >";
+                            ren += "<div class=\"card-body\">";
+                            for (var j = 0; j < st.r1 - 1; j++) {
+                                ren += "<img class=\"img-thumbnail\" style=\"border: 2px solid black; border-radius: 10px;width: 20px; height: 20px\" src=\"rating/filled_star.png\" >";
+                            }
+                            ren += "<img class=\"img-thumbnail\" style=\"border: 2px solid black; border-radius: 10px;width: 20px; height: 20px\" src=\"rating/download.jpg\" >";
+                            for (var j = st.r1; j < 4; j++) {
+                                ren += "<img class=\"img-thumbnail\" style=\"border: 2px solid black; border-radius: 10px;width: 20px; height: 20px\" src=\"rating/empty_star.png\" >";
+                            }
+                            ren += "</div>";
+                            ren += "</div>";
+                        }
+
+                        document.getElementById("averagerating").innerHTML = ren;
+                    }
+                };
+                //2. Prepare request (Define target --> servlet)
+                xhttp.open("GET", "./userShowAverageRatings?did=" + did, true);
+
+                //3. Send Request
+                xhttp.send();
+            }
+
                                             
                                             
         </script>
         
     </body>
 
-<!-- Mirrored from templates.hibootstrap.com/medsev/default/doctor-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Apr 2025 07:26:28 GMT -->
 </html> 

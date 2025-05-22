@@ -51,59 +51,7 @@
         <!-- End Preloader -->
 
         <!-- Header Top -->
-        <div class="header-top">
-            <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-sm-9 col-lg-9">
-                        <div class="header-top-item">
-                            <div class="header-top-left">
-                                <ul>
-                                    <li>
-                                        <a href="tel:+07554332322">
-                                            <i class="icofont-ui-call"></i>
-                                            Call : +07 554 332 322
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#d4bcb1b8b8bb94b9b1b0a7b1a2fab7bbb9">
-                                            <i class="icofont-ui-message"></i>
-                                            <span class="__cf_email__" data-cfemail="92faf7fefefdd2fff7f6e1f7e4bcf1fdff">[email&#160;protected]</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-location-pin"></i>
-                                        210-27 Quadra, Canada 
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-lg-3">
-                        <div class="header-top-item">
-                            <div class="header-top-right">
-                                <ul>
-                                    <li>
-                                        <a href="https://www.facebook.com/login/" target="_blank">
-                                            <i class="icofont-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://twitter.com/login/" target="_blank">
-                                            <i class="icofont-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.pinterest.com/" target="_blank">
-                                            <i class="icofont-pinterest"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div th:replace="Header :: headertop"></div>
         <!-- End Header Top -->
 
         <!-- Start Navbar Area -->
@@ -183,17 +131,11 @@
                                                 <input type="text" id="city" class="form-control" placeholder="city">
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label>Longitude</label>
-                                                <input type="text" id="longitude" class="form-control" placeholder="Longitude">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label>Latitude</label>
-                                                <input type="text" id="latitude" class="form-control" placeholder="Latitude">
-                                            </div>
+                                        
+                                        
+                                        <br>
+                                        <div class="col-lg-12">
+                                            
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group">
@@ -242,6 +184,25 @@
                                             <div class="form-group">
                                                 <label>Description</label>
                                                 <textarea id="desc" class="form-control" placeholder="Description"></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-lg-4">
+                                            <div class="text-center">
+                                                <label>Get Your Current Location</label>
+                                                <button type="button" onclick="getLocation()" class="btn btn-sm btn-success">Get Location</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label>Latitude</label>
+                                                <input type="text" id="latitude" class="form-control" placeholder="Latitude">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label>Longitude</label>
+                                                <input type="text" id="longitude" class="form-control" placeholder="Longitude">
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
@@ -402,6 +363,7 @@
 
                                             function renderHTMLforDoctor(ans) {
                                                 if (ans === "success") {
+                                                    sendmail()
                                                     Swal.fire({
                                                         icon:'success',
                                                         title:'Request Sent!',
@@ -418,6 +380,43 @@
                                                     });
                                                 }
                                             }
+                                            
+                                            function sendmail()
+                                                {
+                                                    var email= document.getElementById("email").value;
+                                                    console.log(email);
+                                                    var body="You have successfully registered your doctor account.";
+                                                    var subject="Registration as a Doctor";
+                                                    var url="/usendemail?body="+body+"&subject="+subject+"&email="+email;
+                                                    fetch(url)
+                                                        .then(response => response.text())
+                                                        .then(ans => renderAsHtml5(ans));
+                                                }
+                                                function renderAsHtml5(ans)
+                                                {
+                                                    //alert(ans);
+                                                }
+                                                
+                                                function getLocation() {
+                                                    const output = document.getElementById("output");
+
+                                                    // Check if geolocation is supported
+                                                    if (navigator.geolocation) {
+                                                        navigator.geolocation.getCurrentPosition(
+                                                            function(position) {
+                                                                const lat = position.coords.latitude;
+                                                                const lon = position.coords.longitude;
+                                                                document.getElementById("latitude").value =lat;
+                                                                document.getElementById("longitude").value =lon;
+                                                            },
+                                                            function(error) {
+                                                                output.innerHTML = "Error: " + error.message;
+                                                            }
+                                                        );
+                                                    } else {
+                                                        output.innerHTML = "Geolocation is not supported by this browser.";
+                                                    }
+                                                }
         </script>
 
 

@@ -6,6 +6,7 @@ import com.mysql.cj.Session;
 import jakarta.servlet.http.HttpSession;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class DoctorRestController {
 
+    @Autowired
+    public EmailSenderService email;
     @PostMapping("/specialityList")
     public String specialityList() {
         String ans = new RDBMS_TO_JSON().generateJSON("select * from specialities");
@@ -219,6 +222,7 @@ public class DoctorRestController {
                 String ugender = rs.getString("ugender");
                 String status = rs.getString("status");
                 String payment_type = rs.getString("payment_type");
+                String uemail= rs.getString("uemail");
 
                 if(bid!=booking_id) {
                     
@@ -262,6 +266,7 @@ public class DoctorRestController {
                     String slots= json2.toString();
                     
                     json.append("\"slots\":").append(slots).append(",");
+                    json.append("\"uemail\":\"").append(uemail).append("\",");
                     json.append("\"payment_type\":\"").append(payment_type);
                     json.append("\"}");
                     
@@ -305,9 +310,10 @@ public class DoctorRestController {
     }
     
     @PostMapping("/doctorChangePassword")
-    public String changePassword(@RequestParam String email, @RequestParam String oldPassword, @RequestParam String newPassword, @RequestParam String confirmPassword,HttpSession session) {
+    public String changePassword(@RequestParam String oldPassword, @RequestParam String newPassword, @RequestParam String confirmPassword,HttpSession session) {
+        Integer id= (Integer) session.getAttribute("did");
         try {
-            ResultSet rs = DBLoader.executeQuery("select * from doctor where demail='" + email + "' and dpass='" + oldPassword + "'");
+            ResultSet rs = DBLoader.executeQuery("select * from doctor where did=" + id + " and dpass='" + oldPassword + "'");
             if (rs.next()) {
                 rs.moveToCurrentRow();
                 rs.updateString("dpass", newPassword);
@@ -320,5 +326,66 @@ public class DoctorRestController {
         } catch (Exception ex) {
             return ex.toString();
         }
+    }
+    
+    @GetMapping("/dforgot")
+    public String dforgot(@RequestParam String email, @RequestParam String otp) {
+        try {
+            ResultSet rs = DBLoader.executeQuery("select * from doctor where demail='" + email + "'");
+            if (rs.next()) {
+                String body = "Your otp for login page is =" + otp;
+                String subject = "Login Authntication";
+                this.email.sendSimpleEmail(email, body, subject);
+                return "success";
+            } else {
+                return "fail";
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ex.toString();
+        }
+    }
+
+    @GetMapping("/dotpverify")
+    public String dotpverify(@RequestParam String email) {
+        try {
+            ResultSet rs = DBLoader.executeQuery("select * from doctor where demail='" + email + "'");
+            if (rs.next()) {
+                rs.moveToCurrentRow();
+                String pass = rs.getString("dpass");
+                String subject = "Your Account Password - JC Pawfect";
+                String body = "Dear Doctor,\n\n"
+                        + "As per your request, here is your account password:\n\n"
+                        + "Password: " + pass + "\n\n"
+                        + "Please do not share this password with anyone.\n"
+                        + "We recommend changing your password after login for better security.\n\n"
+                        + "Regards,\n"
+                        + "Team Doc";
+                this.email.sendSimpleEmail(email, body, subject);
+                return "success";
+            } else {
+                return "fail";
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ex.toString();
+        }
+    }
+    
+    @GetMapping("/dsendemail")
+    public String dSendemail(@RequestParam String body, @RequestParam String subject, @RequestParam String id)
+    {
+        String email="";
+        try {
+            ResultSet rs= DBLoader.executeQuery("select * from doctor where did="+id);
+            if(rs.next()) {
+                email= rs.getString("demail");
+            }
+        }
+        catch(Exception ex) {
+            return ex.toString();
+        }
+        this.email.sendSimpleEmail(email, body, subject);
+        return "success";
     }
 }

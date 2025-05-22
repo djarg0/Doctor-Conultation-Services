@@ -49,14 +49,14 @@ public class UserController {
     
     @GetMapping("/UserShowDoctors")
     public String userShowDoctors(HttpSession session) {
-        Integer uid=(Integer) session.getAttribute("uid");
-        if(uid == null)
-        {
-            return "redirect:/UserLogin";
-        }
-        else{
+//        Integer uid=(Integer) session.getAttribute("uid");
+//        if(uid == null)
+//        {
+//            return "redirect:/UserLogin";
+//        }
+//        else{
             return "UserShowDoctors";
-        }
+//        }
     }
     
     @GetMapping("/UserDoctorDetails")
@@ -124,5 +124,10 @@ public class UserController {
         else{
             return "UserChangePassword";
         }
+    }
+    
+    @GetMapping("/FAQ")
+    public String faq() {
+        return "FAQ";
     }
 }

@@ -51,59 +51,7 @@
         <!-- End Preloader -->
 
         <!-- Header Top -->
-        <div class="header-top">
-            <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-sm-9 col-lg-9">
-                        <div class="header-top-item">
-                            <div class="header-top-left">
-                                <ul>
-                                    <li>
-                                        <a href="tel:+07554332322">
-                                            <i class="icofont-ui-call"></i>
-                                            Call : +07 554 332 322
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#d4bcb1b8b8bb94b9b1b0a7b1a2fab7bbb9">
-                                            <i class="icofont-ui-message"></i>
-                                            <span class="__cf_email__" data-cfemail="92faf7fefefdd2fff7f6e1f7e4bcf1fdff">[email&#160;protected]</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-location-pin"></i>
-                                        210-27 Quadra, Canada 
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-lg-3">
-                        <div class="header-top-item">
-                            <div class="header-top-right">
-                                <ul>
-                                    <li>
-                                        <a href="https://www.facebook.com/login/" target="_blank">
-                                            <i class="icofont-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://twitter.com/login/" target="_blank">
-                                            <i class="icofont-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.pinterest.com/" target="_blank">
-                                            <i class="icofont-pinterest"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div th:replace="Header :: headertop"></div>
         <!-- End Header Top -->
 
         <!-- Start Navbar Area -->
@@ -170,7 +118,7 @@
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <label>Photo</label>
-                                                <input type="file" id="photo" class="form-control">
+                                                <input type="file" id="photo" accept="image/*" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -326,6 +274,8 @@
                                             
                                                 function renderHTMLforUser(ans) {
                                                     if (ans === "success") {
+                                                        
+                                                        sendmail();
                                                         Swal.fire({
                                                             icon:'success',
                                                             title:'Profile Created!'
@@ -333,7 +283,7 @@
                                                     } else if (ans === "failed") {
                                                     Swal.fire({
                                                         icon:'error',
-                                                        title:'Email Already Has A Linked Account!',
+                                                        title:'Email Already Has A Linked Account!'
                                                     });
                                                 } else {
                                                     Swal.fire({
@@ -341,6 +291,22 @@
                                                         title:'Something Went Wrong!',
                                                     });
                                                 }
+                                                }
+                                                
+                                                function sendmail()
+                                                {
+                                                    var email= document.getElementById("email").value;
+                                                    console.log(email);
+                                                    var body="You have successfully registered your account.";
+                                                    var subject="Sign Up Confirmation";
+                                                    var url="/usendemail?body="+body+"&subject="+subject+"&email="+email;
+                                                    fetch(url)
+                                                        .then(response => response.text())
+                                                        .then(ans => renderAsHtml5(ans));
+                                                }
+                                                function renderAsHtml5(ans)
+                                                {
+//                                                    alert(ans);
                                                 }
         </script>
 

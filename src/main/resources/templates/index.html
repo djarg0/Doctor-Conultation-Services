@@ -35,7 +35,7 @@
 
         <link rel="icon" type="image/png" href="assets/img/favicon.png">
     </head>
-    <body onload="showCities(), getDoctors()">
+    <body onload="showCities(), getDoctors(), sendmail()">
         
         <!-- Preloader -->
         <div class="loader">
@@ -51,59 +51,7 @@
         <!-- End Preloader -->
 
         <!-- Header Top -->
-        <div class="header-top">
-            <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-sm-9 col-lg-9">
-                        <div class="header-top-item">
-                            <div class="header-top-left">
-                                <ul>
-                                    <li>
-                                        <a href="tel:+07554332322">
-                                            <i class="icofont-ui-call"></i>
-                                            Call : +07 554 332 322
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#533b363f3f3c133e36372036257d303c3e">
-                                            <i class="icofont-ui-message"></i>
-                                            <span class="__cf_email__" data-cfemail="d9b1bcb5b5b699b4bcbdaabcaff7bab6b4">[email&#160;protected]</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <i class="icofont-location-pin"></i>
-                                        210-27 Quadra, Canada 
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-lg-3">
-                        <div class="header-top-item">
-                            <div class="header-top-right">
-                                <ul>
-                                    <li>
-                                        <a href="https://www.facebook.com/login/" target="_blank">
-                                            <i class="icofont-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://twitter.com/login/" target="_blank">
-                                            <i class="icofont-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                       <a href="https://www.pinterest.com/" target="_blank">
-                                            <i class="icofont-pinterest"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div th:replace="Header :: headertop"></div>
         <!-- End Header Top -->
         
         <!-- Start Navbar Area -->
@@ -120,8 +68,8 @@
                                 <div class="slider-shape">
                                     <img src="assets/img/home-one/5.png" alt="Shape">
                                 </div>
-                                <h1>We have Fantastic Doctors and Dentist</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+                                <h1>We have Fantastic Doctors</h1>
+                                <p>Our team of highly qualified and compassionate doctors is here to provide you with the best care possible. Whether it’s a routine check-up or a specialist consultation, you're in expert hands.</p>
                                 <div class="common-btn">
                                     <a href="/UserShowCities">Get Appointment</a>
                                 </div>
@@ -139,7 +87,7 @@
                                     <img src="assets/img/home-one/5.png" alt="Shape">
                                 </div>
                                 <h1>We Always Provide Best Services</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+                                <p> From easy appointment booking to personalized care, we ensure a seamless healthcare experience. Your comfort and well-being are our top priorities—every step of the way.</p>
                                 <div class="common-btn">
                                     <a href="/UserShowCities">Get Appointment</a>
                                 </div>
@@ -156,8 +104,8 @@
                                 <div class="slider-shape">
                                     <img src="assets/img/home-one/5.png" alt="Shape">
                                 </div>
-                                <h1>Hign Quality Medicines at Lowest Rates</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+                                <h1>Your Health, Our Priority</h1>
+                                <p>We’re committed to delivering accessible, reliable, and patient-focused care. With trusted doctors and dedicated support, we make your health journey simple and stress-free.</p>
                                 <div class="common-btn">
                                     <a href="/UserShowCities">Get Appointment</a>
                                 </div>
@@ -214,6 +162,7 @@
             </div>
         </div>
         <!-- End Counter -->
+
         
         <section class="blog-area pt-100 pb-70">
             <div class="container">
@@ -256,6 +205,44 @@
                 </div> 
             </div>
         </section>
+        
+        <!-- About -->
+        <div class="about-area pt-100 pb-70">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="about-item">
+                            <div class="about-left">
+                                <img src="assets/img/home-one/4.jpg" alt="About">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-item about-right">
+                            <img src="assets/img/home-one/5.png" alt="About">
+                            <h2>About Our Website</h2>
+                            <p>Our platform is designed to make healthcare simple, accessible, and stress-free. Whether you're booking an appointment, consulting with a specialist, or looking for trusted health information, we bring it all to your fingertips. With a user-friendly interface and a network of verified doctors, your care starts here.</p>
+                            <ul>
+                                <li>
+                                    <i class="icofont-check-circled"></i>
+                                    Browse Our Website
+                                </li>
+                                <li>
+                                    <i class="icofont-check-circled"></i>
+                                    Choose Service
+                                </li>
+                                <li>
+                                    <i class="icofont-check-circled"></i>
+                                    Book Appointments
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End About -->
+        
         <!-- Doctors -->
         <section class="doctors-area pt-100">
             <div class="container">
@@ -313,7 +300,7 @@
             </div>
         </section>
         <!-- End Doctors -->
-
+        <br>
 
         
         <!-- Footer -->
@@ -385,8 +372,6 @@
                                                     </a>
                                                     </li>
                                                     <li>
-                                                    <i class="icofont-calendar"></i>
-                                                    Jan 03, 2024
                                                     </li>
                                                     </ul>
                                                     </div>
@@ -444,7 +429,17 @@
                                                 }
                                                 document.getElementById("showDoctors").innerHTML= s;
                                             }
-            
+//                                            function sendmail()
+//                                            {
+//                                                    var url="/sendemail";
+//                                                fetch(url)
+//                                                        .then(response => response.text())
+//                                                        .then(ans => renderAsHtml5(ans));
+//                                            }
+//                                            function renderAsHtml5(ans)
+//                                            {
+//                                                alert(ans);
+//                                            }
         </script>
 
     </body>
